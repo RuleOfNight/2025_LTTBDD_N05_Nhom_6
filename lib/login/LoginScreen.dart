@@ -21,51 +21,76 @@ class _LoginScreenState extends State<LoginScreen> {
       resizeToAvoidBottomInset: false,
       // Có SingleChildScrollView → khi bàn phím bật, người dùng có thể scroll xuống để bấm nút Login
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // Ô nhập Email
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Container(
-                alignment: Alignment.center,
-                height: 100,
-                width: 400,
-                padding: const EdgeInsets.only(bottom: 10),
-                margin: const EdgeInsets.only(top: 20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.grey,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: TextFormField(
-                    controller: emailController,
-                    onChanged: (value) => print("Email: $value"),
-                    decoration: const InputDecoration(
-                      labelText: "Email",
-                      hintText: "Nhập email...",
-                      icon: Icon(Icons.email),
-                      focusColor: Colors.white,
-                      labelStyle: TextStyle(color: Colors.white, fontSize: 18),
+        child: Center(
+          child: Column(
+            children: [
+              // Ô nhập Email
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 100,
+                  width: 400,
+                  padding: const EdgeInsets.only(bottom: 10),
+                  margin: const EdgeInsets.only(top: 20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.grey,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: TextFormField(
+                      controller: emailController,
+                      onChanged: (value) => print("Email: $value"),
+                      decoration: const InputDecoration(
+                        labelText: "Email",
+                        hintText: "Nhập email...",
+                        icon: Icon(Icons.email),
+                        focusColor: Colors.white,
+                        labelStyle: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            // Ô nhập Password
-            TextFormField(
-              controller: passController,
-              obscureText: true, // ẩn ký tự
-              onChanged: (value) => print("Password: $value"),
-              decoration: const InputDecoration(
-                labelText: "Password",
-                hintText: "Nhap password...",
-                icon: Icon(Icons.lock),
-                focusColor: Colors.white,
-                labelStyle: TextStyle(color: Colors.white, fontSize: 18),
+              // Ô nhập Password
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 100,
+                  width: 400,
+                  padding: const EdgeInsets.only(bottom: 10),
+                  margin: const EdgeInsets.only(top: 20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.grey,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      controller: passController,
+                      obscureText: true, // ẩn ký tự
+                      onChanged: (value) => print("Password: $value"),
+                      decoration: const InputDecoration(
+                        labelText: "Password",
+                        hintText: "Nhap password...",
+                        icon: Icon(Icons.lock),
+                        focusColor: Colors.white,
+                        labelStyle: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
