@@ -24,15 +24,32 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           children: [
             // Ô nhập Email
-            TextFormField(
-              controller: emailController,
-              onChanged: (value) => print("Email: $value"),
-              decoration: const InputDecoration(
-                labelText: "Email",
-                hintText: "Nhập email...",
-                icon: Icon(Icons.email),
-                focusColor: Colors.white,
-                labelStyle: TextStyle(color: Colors.white, fontSize: 18),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Container(
+                alignment: Alignment.center,
+                height: 100,
+                width: 400,
+                padding: const EdgeInsets.only(bottom: 10),
+                margin: const EdgeInsets.only(top: 20),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.grey,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: TextFormField(
+                    controller: emailController,
+                    onChanged: (value) => print("Email: $value"),
+                    decoration: const InputDecoration(
+                      labelText: "Email",
+                      hintText: "Nhập email...",
+                      icon: Icon(Icons.email),
+                      focusColor: Colors.white,
+                      labelStyle: TextStyle(color: Colors.white, fontSize: 18),
+                    ),
+                  ),
+                ),
               ),
             ),
             // Ô nhập Password
