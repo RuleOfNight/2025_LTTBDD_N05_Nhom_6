@@ -27,15 +27,26 @@ class _LoginScreenState extends State<LoginScreen> {
             TextFormField(
               controller: emailController,
               onChanged: (value) => print("Email: $value"),
-              decoration: const InputDecoration(labelText: "Email"),
+              decoration: const InputDecoration(
+                labelText: "Email",
+                hintText: "Nhập email...",
+                icon: Icon(Icons.email),
+                focusColor: Colors.white,
+                labelStyle: TextStyle(color: Colors.white, fontSize: 18),
+              ),
             ),
-
             // Ô nhập Password
             TextFormField(
               controller: passController,
               obscureText: true, // ẩn ký tự
               onChanged: (value) => print("Password: $value"),
-              decoration: const InputDecoration(labelText: "Password"),
+              decoration: const InputDecoration(
+                labelText: "Password",
+                hintText: "Nhap password...",
+                icon: Icon(Icons.lock),
+                focusColor: Colors.white,
+                labelStyle: TextStyle(color: Colors.white, fontSize: 18),
+              ),
             ),
           ],
         ),
