@@ -11,6 +11,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   var emailController = TextEditingController();
+  var passController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     // Scaffold là widget cung cấp cấu trúc cơ bản cho một màn hình
@@ -21,13 +23,19 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            // Ô nhập Email
             TextFormField(
-              onChanged: (value) => print(value),
               controller: emailController,
-              decoration: const InputDecoration(
-                labelText: "Email",
-                hintText: "Enter your email",
-              ),
+              onChanged: (value) => print("Email: $value"),
+              decoration: const InputDecoration(labelText: "Email"),
+            ),
+
+            // Ô nhập Password
+            TextFormField(
+              controller: passController,
+              obscureText: true, // ẩn ký tự
+              onChanged: (value) => print("Password: $value"),
+              decoration: const InputDecoration(labelText: "Password"),
             ),
           ],
         ),
