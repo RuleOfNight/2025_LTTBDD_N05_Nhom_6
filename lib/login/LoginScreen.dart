@@ -90,6 +90,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(height: 10),
+              MaterialButton(
+                onPressed: () {},
+                child: Text('Sign Up', style: TextStyle(color: Colors.white)),
+              ),
               Container(
                 height: 50,
                 width: 250,
