@@ -161,8 +161,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: TextFormField(
+                      onTap: lookAround,
                       controller: emailController,
-                      onChanged: (value) => print("Email: $value"),
+                      onChanged: ((value) =>
+                          moveEyes(value.length.toDouble() * 2)),
                       decoration: const InputDecoration(
                         labelText: "Email",
                         hintText: "Nhập email...",
@@ -193,6 +195,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
+                      onTap: handsUp,
                       controller: passController,
                       obscureText: true, // ẩn ký tự
                       onChanged: (value) => print("Password: $value"),
