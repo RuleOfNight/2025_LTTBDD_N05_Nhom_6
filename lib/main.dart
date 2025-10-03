@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'login/LoginScreen.dart';
-import 'screens/MainScreen.dart';
 
 void main() {
   runApp(const GamePlatformApp());
 }
 
 class GamePlatformApp extends StatelessWidget {
-  const GamePlatformApp({Key? key}) : super(key: key);
+  const GamePlatformApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,7 @@ class GamePlatformApp extends StatelessWidget {
           elevation: 0,
         ),
       ),
-      home: const MainScreen(),
+      home: const LoginScreen(),
     );
   }
 }

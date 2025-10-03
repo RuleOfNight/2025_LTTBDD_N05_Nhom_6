@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rive/rive.dart';
+import 'package:games_platform/screens/MainScreen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -90,17 +91,29 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(height: 10),
-              Container(
-                height: 50,
-                width: 250,
-                decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Text(
-                  "Login",
-                  style: TextStyle(color: Colors.white, fontSize: 25),
-                  textAlign: TextAlign.center,
+              MaterialButton(
+                onPressed: () {},
+                child: Text('Sign Up', style: TextStyle(color: Colors.white)),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MainScreen()),
+                  );
+                },
+                child: Container(
+                  height: 50,
+                  width: 250,
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Text(
+                    "Login",
+                    style: TextStyle(color: Colors.white, fontSize: 25),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
             ],
