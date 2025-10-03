@@ -14,6 +14,49 @@ class _LoginScreenState extends State<LoginScreen> {
   var emailController = TextEditingController();
   var passController = TextEditingController();
 
+  Artboard? artboard;
+  SMITrigger? failTrigger;
+  SMITrigger? successTrigger;
+  SMIBool? isChecking;
+  SMIBool? isHandsUp;
+  SMINumber? numLook;
+  StateMachineController? stateMachineController;
+
+  var bearAnimation = "imgs/bear.riv";
+
+  void initState() {
+    rootBundle.load(bearAnimation).then((value) {
+      final file = RiveFile.import(value);
+      final art = file.mainArtboard;
+      stateMachineController = StateMachineController.fromArtboard(
+        art,
+        "Login Machine",
+      );
+
+      if (stateMachineController != null) {
+        art.addController(stateMachineController!);
+
+        stateMachineController!.inputs.forEach((element) {
+          if (element.name == "isChecking") {
+            isChecking = element as SMIBool;
+          } else if (element.name == "numLook") {
+            numLook = element as SMINumber;
+          } else if (element.name == "isHandsUp") {
+            isHandsUp = element as SMIBool;
+          } else if (element.name == "trigSuccess") {
+            successTrigger = element as SMITrigger;
+          } else if (element.name == "trigFail") {
+            failTrigger = element as SMITrigger;
+          }
+        });
+      }
+      setState(() {
+        artboard = art;
+      });
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     // Scaffold là widget cung cấp cấu trúc cơ bản cho một màn hình
