@@ -11,7 +11,9 @@ class HomeScreen extends StatelessWidget {
         title: const Text('GameHub', style: TextStyle(fontWeight: FontWeight.bold)),
         actions: [
           // Nút thông báo ở góc phải headbar
-          IconButton(icon: const Icon(Icons.notifications), onPressed: () {}),
+          IconButton(icon: const Icon(Icons.notifications), onPressed: () {
+            // lazy
+          }),
         ],
       ),
       body: SingleChildScrollView(
@@ -20,6 +22,7 @@ class HomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildFeaturedBanner(context),
+            _buildSectionTitle('Featured Games'),
             const SizedBox(height: 20),    // Khoảng cách dưới các banner
           ],
         ),
@@ -71,4 +74,16 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
+
+  Widget _buildSectionTitle(String title) {
+    return Padding(
+      child: Text(
+        title,
+        style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
+      ),
+    );
+  }
+
+
+
 }
