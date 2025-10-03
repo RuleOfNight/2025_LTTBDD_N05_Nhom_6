@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'login/LoginScreen.dart';
-import 'screens/main_screen.dart';
+import 'screens/MainScreen.dart';
 
 void main() {
   runApp(const GamePlatformApp());
