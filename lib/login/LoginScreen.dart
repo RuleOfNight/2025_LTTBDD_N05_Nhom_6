@@ -69,6 +69,24 @@ class _LoginScreenState extends State<LoginScreen> {
     numLook?.change(0);
   }
 
+  void moveEyes(value) {
+    numLook?.change(value);
+  }
+
+  void login() {
+    isChecking?.change(false);
+    isHandsUp?.change(false);
+    if (emailController.text == "admin" && passController.text == "admin") {
+      successTrigger?.fire();
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const MainScreen()),
+      );
+    } else {
+      failTrigger?.fire();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // Scaffold là widget cung cấp cấu trúc cơ bản cho một màn hình
@@ -152,10 +170,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => const MainScreen()),
-                  );
+                  login();
                 },
                 child: Container(
                   height: 50,
