@@ -57,6 +57,12 @@ class _LoginScreenState extends State<LoginScreen> {
     super.initState();
   }
 
+  void lookAround() {
+    isChecking?.change(true);
+    isHandsUp?.change(false);
+    numLook?.change(0);
+  }
+
   @override
   Widget build(BuildContext context) {
     // Scaffold là widget cung cấp cấu trúc cơ bản cho một màn hình
