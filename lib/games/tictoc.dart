@@ -47,6 +47,7 @@ class _TicTocGameState extends State<TicTocGame> {
       mangXO[index] = luot ? 'X' : 'O';
       daDanhDau++;
       luot = !luot;
+      kiemTraNguoiThang();
     });
   }
 
@@ -83,15 +84,19 @@ class _TicTocGameState extends State<TicTocGame> {
 
     if (nguoiThang != "") {
       troChoiCheck = true;
+      Color mauWin = Colors.red;
       if (nguoiThang == 'X') {
         diemX++;
+        mauWin = Colors.red;
       } else if (nguoiThang == 'O') {
         diemO++;
+        mauWin = Colors.blue;
       }
+
       hienThiThongBao(
         "Chúc mừng",
         "Người chơi ${(nguoiThang)} đã chiến thắng!",
-        Colors.red,
+        mauWin,
       );
     } else if (daDanhDau == 9) {
       troChoiCheck = true;
@@ -247,7 +252,9 @@ class _TicTocGameState extends State<TicTocGame> {
                             child: Text(
                               mangXO[index],
                               style: TextStyle(
-                                color: Colors.red,
+                                color: mangXO[index] == 'X'
+                                    ? Colors.red
+                                    : Colors.blue,
                                 fontSize: 50,
                                 fontWeight: FontWeight.bold,
                               ),
