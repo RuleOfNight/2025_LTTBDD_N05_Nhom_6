@@ -11,6 +11,21 @@ class _TicTocGameState extends State<TicTocGame> {
   bool luot = true; // true la X, false la O
   bool chienThang = false;
 
+  Widget _diemSo(String ben, int diem, Color mau) {
+    return Column(
+      children: [
+        Text(
+          ben,
+          style: TextStyle(
+            color: mau,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
