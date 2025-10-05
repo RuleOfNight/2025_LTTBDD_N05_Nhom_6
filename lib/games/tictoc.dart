@@ -99,8 +99,31 @@ class _TicTocGameState extends State<TicTocGame> {
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor: const Color(0xFF1A1A2E),
-          title: Text(tieuDe),
-          content: Text(noiDung),
+          title: Text(
+            tieuDe,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: mau,
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          content: Text(
+            noiDung,
+            textAlign: TextAlign.center,
+            style: const TextStyle(color: Colors.white, fontSize: 18),
+          ),
+          actions: [
+            Center(
+              child: TextButton(
+                onPressed: () {},
+                child: const Text(
+                  "Chơi Lại",
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
+              ),
+            ),
+          ],
         );
       },
     );
