@@ -12,7 +12,7 @@ class _TicTocGameState extends State<TicTocGame> {
   bool chienThang = false;
 
   Widget _diemSo(String ben, int diem, Color mau) {
-    return Column(
+    return Row(
       children: [
         Text(
           ben,
@@ -22,6 +22,9 @@ class _TicTocGameState extends State<TicTocGame> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        SizedBox(width: 15),
+        const Text(":", style: TextStyle(color: Colors.white, fontSize: 25)),
+        SizedBox(width: 15),
         Text(
           diem.toString(),
           style: const TextStyle(
@@ -63,6 +66,7 @@ class _TicTocGameState extends State<TicTocGame> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  _diemSo("X", 20, Colors.red),
                   Column(
                     children: [
                       Text(
@@ -90,6 +94,7 @@ class _TicTocGameState extends State<TicTocGame> {
                       ),
                     ],
                   ),
+                  _diemSo("O", 20, Colors.blue),
                 ],
               ),
             ),
