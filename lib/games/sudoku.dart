@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:sudoku_solver_generator/sudoku_solver_generator.dart';
 
 class SudokuGame extends StatefulWidget {
   const SudokuGame({Key? key}) : super(key: key);
@@ -21,6 +21,24 @@ class _SudokuGameState extends State<SudokuGame> {
   // Ô đang được chọn
   int? selectedRow;
   int? selectedCol;
+
+  // Tạo bảng cho từng dif
+  void _selectDifficulty(String difficulty) {
+    int emptyCount = 30; // Default: Easy
+    
+    if (difficulty == 'Medium') {emptyCount = 45;} 
+    else if (difficulty == 'Asian') {emptyCount = 54;}
+
+    setState(() {
+      _generateBoard(emptyCount);
+      showDifficultySelector = false;
+    });
+  }
+
+  void _generateBoard(int emptySquares) {
+    print('Ngủ đã');
+  }
+
 
 
   @override
@@ -68,13 +86,8 @@ class _SudokuGameState extends State<SudokuGame> {
   /// Widget menu chọn độ khó
   Widget _buildDifficultyButton(String difficulty, Color color) {
     return ElevatedButton(
-      onPressed: () {
-
-        setState(() {
-          showDifficultySelector = false;
-        });
-        
-      },
+      onPressed: () => _selectDifficulty(difficulty),
+      
       style: ElevatedButton.styleFrom(
         backgroundColor: const Color(0xFF1A1A2E),
         padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
