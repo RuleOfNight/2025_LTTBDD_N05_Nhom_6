@@ -96,7 +96,7 @@ class HomeScreen extends StatelessWidget {
             'name': 'Tic Tac Toe',
             'icon': Icons.grid_3x3,
             'color': Colors.blue,
-            'screen': const TicTacToeGame()
+            'screen': const TicTocGame()
         },
         {
             'name': 'Rắn Săn Mồi',

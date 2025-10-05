@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'login/LoginScreen.dart';
+import 'games/tictoc.dart';
 
 void main() {
-  runApp(const GamePlatformApp());
+  runApp(MaterialApp(home: TicTocGame()));
 }
 
 class GamePlatformApp extends StatelessWidget {
