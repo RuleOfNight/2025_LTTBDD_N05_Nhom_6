@@ -50,6 +50,15 @@ class _TicTocGameState extends State<TicTocGame> {
     });
   }
 
+  void choiLai() {
+    setState(() {
+      mangXO = List.filled(9, "");
+      daDanhDau = 0;
+      luot = true;
+      chienThang = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -167,7 +176,7 @@ class _TicTocGameState extends State<TicTocGame> {
             Container(
               margin: const EdgeInsets.only(bottom: 20),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: choiLai,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFFE94560),
                   padding: const EdgeInsets.symmetric(
