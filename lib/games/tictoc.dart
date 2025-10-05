@@ -80,6 +80,15 @@ class _TicTocGameState extends State<TicTocGame> {
         break;
       }
     }
+
+    if (nguoiThang != "") {
+      chienThang = true;
+      if (nguoiThang == 'X') {
+        diemX++;
+      } else if (nguoiThang == 'O') {
+        diemO++;
+      }
+    }
   }
 
   @override
