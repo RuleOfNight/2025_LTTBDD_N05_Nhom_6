@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:games_platform/games/tictoc.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -8,12 +9,18 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       // Scaffold tạo bố cục cơ bản cho 1 màn hình (headbar + body)
       appBar: AppBar(
-        title: const Text('GameHub', style: TextStyle(fontWeight: FontWeight.bold)),
+        title: const Text(
+          'GameHub',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         actions: [
           // Nút thông báo ở góc phải headbar
-          IconButton(icon: const Icon(Icons.notifications), onPressed: () {
-            // lazy
-          }),
+          IconButton(
+            icon: const Icon(Icons.notifications),
+            onPressed: () {
+              // lazy
+            },
+          ),
         ],
       ),
       body: SingleChildScrollView(
@@ -24,7 +31,7 @@ class HomeScreen extends StatelessWidget {
             _buildFeaturedBanner(context),
             _buildSectionTitle('Featured Games'),
             _buildQuickPlayGames(context),
-            const SizedBox(height: 20),    // Khoảng cách dưới các banner
+            const SizedBox(height: 20), // Khoảng cách dưới các banner
           ],
         ),
       ),
@@ -50,7 +57,11 @@ class HomeScreen extends StatelessWidget {
           Positioned(
             right: -20,
             top: -20,
-            child: Icon(Icons.sports_esports, size: 180, color: Colors.white.withOpacity(0.1)), // Icon là có sẵn trong thư viện material của flutter
+            child: Icon(
+              Icons.sports_esports,
+              size: 180,
+              color: Colors.white.withOpacity(0.1),
+            ), // Icon là có sẵn trong thư viện material của flutter
           ),
           // text trong banner
           Padding(
@@ -66,7 +77,11 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(height: 8),
                 Text(
                   'Bạn cần đạt 5tr sức mạnh\ntrong Rise Of Kingdoms để skip QC',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ],
             ),
@@ -76,43 +91,47 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
- // Title
+  // Title
   Widget _buildSectionTitle(String title) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       child: Text(
         title,
-        style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
+        style: const TextStyle(
+          fontSize: 22,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
       ),
     );
   }
 
- // Grid các game
+  // Grid các game
   Widget _buildQuickPlayGames(BuildContext context) {
     final games = [
       {
         'name': 'Tic Tac Toe',
         'icon': Icons.grid_3x3,
         'color': Colors.blue,
-        'screen': const Placeholder()
+        'screen': const TicTocGame(),
       },
       {
         'name': 'Rắn Săn Mồi',
         'icon': Icons.widgets,
         'color': Colors.green,
-        'screen': const Placeholder()
+        'screen': const Placeholder(),
       },
       {
         'name': 'Card Game',
         'icon': Icons.extension,
         'color': Colors.orange,
-        'screen': const Placeholder()
+        'screen': const Placeholder(),
       },
       {
         'name': 'Sudoku',
         'icon': Icons.calculate,
         'color': Colors.teal,
-        'screen': const Placeholder()
+        'screen': const Placeholder(),
       },
     ];
 
@@ -150,7 +169,11 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(games[i]['icon'] as IconData, size: 50, color: Colors.white),
+                Icon(
+                  games[i]['icon'] as IconData,
+                  size: 50,
+                  color: Colors.white,
+                ),
                 const SizedBox(height: 12),
                 Text(
                   games[i]['name'] as String,

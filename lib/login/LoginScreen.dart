@@ -13,6 +13,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   var emailController = TextEditingController();
   var passController = TextEditingController();
+  bool seePassword = false;
 
   Artboard? artboard;
   SMITrigger? failTrigger;
@@ -20,6 +21,8 @@ class _LoginScreenState extends State<LoginScreen> {
   SMIBool? isChecking;
   SMIBool? isHandsUp;
   SMINumber? numLook;
+  SMIBool? isSeeking;
+
   StateMachineController? stateMachineController;
 
   var bearAnimation = "imgs/bear.riv";
@@ -31,8 +34,8 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<void> _loadRive() async {
-    final data = await rootBundle.load(bearAnimation);
     await RiveFile.initialize();
+    final data = await rootBundle.load(bearAnimation);
     final file = RiveFile.import(data);
     final art = file.mainArtboard;
     stateMachineController = StateMachineController.fromArtboard(
@@ -54,6 +57,8 @@ class _LoginScreenState extends State<LoginScreen> {
           successTrigger = element as SMITrigger;
         } else if (element.name == "trigFail") {
           failTrigger = element as SMITrigger;
+        } else if (element.name == "isChecking") {
+          isChecking = element as SMIBool;
         }
       }
     }
@@ -180,6 +185,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               // Ô nhập Password
+              // Ô nhập Password
               Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: Container(
@@ -197,22 +203,37 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: TextFormField(
                       onTap: handsUp,
                       controller: passController,
-                      obscureText: true, // ẩn ký tự
+                      obscureText: seePassword, // dùng biến thay vì true
                       onChanged: (value) => print("Password: $value"),
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         labelText: "Password",
-                        hintText: "Nhap password...",
-                        icon: Icon(Icons.lock),
+                        hintText: "Nhập password...",
+                        icon: const Icon(Icons.lock),
                         focusColor: Colors.white,
-                        labelStyle: TextStyle(
+                        labelStyle: const TextStyle(
                           color: Colors.white,
                           fontSize: 18,
+                        ),
+                        // 👇 Thêm icon mắt để show/hide mật khẩu
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            seePassword
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              seePassword = !seePassword;
+                            });
+                          },
                         ),
                       ),
                     ),
                   ),
                 ),
               ),
+
               const SizedBox(height: 10),
               MaterialButton(
                 onPressed: () {},

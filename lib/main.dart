@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'login/LoginScreen.dart';
-import 'games/tictoc.dart';
 
 void main() {
-  runApp(MaterialApp(home: TicTocGame()));
+  runApp(MaterialApp(home: LoginScreen()));
 }
 
 class GamePlatformApp extends StatelessWidget {
@@ -23,7 +22,7 @@ class GamePlatformApp extends StatelessWidget {
           elevation: 0,
         ),
       ),
-      home: const LoginScreen(),
+      home: LoginScreen(),
     );
   }
 }
