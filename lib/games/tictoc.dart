@@ -22,6 +22,14 @@ class _TicTocGameState extends State<TicTocGame> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        Text(
+          diem.toString(),
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ],
     );
   }
