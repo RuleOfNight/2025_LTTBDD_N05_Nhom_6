@@ -11,6 +11,11 @@ class _TicTocGameState extends State<TicTocGame> {
   bool luot = true; // true la X, false la O
   bool chienThang = false;
 
+  List<String> mangXO = List.filled(9, "");
+  int diemX = 0;
+  int diemO = 0;
+  int daDanhDau = 0;
+
   Widget _diemSo(String ben, int diem, Color mau) {
     return Row(
       children: [
@@ -130,6 +135,16 @@ class _TicTocGameState extends State<TicTocGame> {
                                 offset: const Offset(0, 3),
                               ),
                             ],
+                          ),
+                          child: Center(
+                            child: Text(
+                              "X",
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 50,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
                         ),
                       );
