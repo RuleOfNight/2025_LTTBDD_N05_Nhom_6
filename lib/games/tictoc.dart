@@ -42,6 +42,14 @@ class _TicTocGameState extends State<TicTocGame> {
     );
   }
 
+  void nhanVao(int index) {
+    setState(() {
+      mangXO[index] = luot ? 'X' : 'O';
+      daDanhDau++;
+      luot = !luot;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -122,7 +130,7 @@ class _TicTocGameState extends State<TicTocGame> {
                     itemBuilder: (BuildContext context, int index) {
                       return GestureDetector(
                         onTap: () {
-                          print("da nhan vao");
+                          nhanVao(index);
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -138,7 +146,7 @@ class _TicTocGameState extends State<TicTocGame> {
                           ),
                           child: Center(
                             child: Text(
-                              "X",
+                              mangXO[index],
                               style: TextStyle(
                                 color: Colors.red,
                                 fontSize: 50,
