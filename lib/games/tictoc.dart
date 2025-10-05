@@ -15,7 +15,11 @@ class _TicTocGameState extends State<TicTocGame> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF0F0F1E),
-      appBar: AppBar(title: const Text('Tic Tac Toe')),
+      appBar: AppBar(
+        title: const Text('Tic Tac Toe', style: TextStyle(color: Colors.white)),
+        backgroundColor: const Color(0xFF1A1A2E),
+        elevation: 0,
+      ),
       body: SafeArea(
         child: Column(
           children: [
@@ -84,6 +88,7 @@ class _TicTocGameState extends State<TicTocGame> {
                     ),
                   ),
                 ),
+                //asd
               ],
             ),
           ],
