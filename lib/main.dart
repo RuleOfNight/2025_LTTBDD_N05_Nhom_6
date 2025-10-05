@@ -3,7 +3,7 @@ import 'login/LoginScreen.dart';
 import 'games/tictoc.dart';
 
 void main() {
-  runApp(MaterialApp(home: TicTacToeGame()));
+  runApp(MaterialApp(home: TicTocGame()));
 }
 
 class GamePlatformApp extends StatelessWidget {
