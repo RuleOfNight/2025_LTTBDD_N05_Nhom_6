@@ -112,6 +112,7 @@ class _TicTocGameState extends State<TicTocGame> {
               ),
             ),
 
+            // Luoi caro
             Expanded(
               child: AspectRatio(
                 aspectRatio: 1.0,
@@ -157,6 +158,33 @@ class _TicTocGameState extends State<TicTocGame> {
                         ),
                       );
                     },
+                  ),
+                ),
+              ),
+            ),
+
+            // Nut choi lai,
+            Container(
+              margin: const EdgeInsets.only(bottom: 20),
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFFE94560),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 30,
+                    vertical: 20,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  elevation: 5,
+                ),
+                child: const Text(
+                  'Chơi Lại',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
