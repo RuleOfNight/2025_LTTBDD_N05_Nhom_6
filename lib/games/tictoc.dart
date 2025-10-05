@@ -100,36 +100,41 @@ class _TicTocGameState extends State<TicTocGame> {
             ),
 
             Expanded(
-              child: Container(
-                margin: const EdgeInsets.all(20),
-                child: GridView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: 9,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 8,
-                    mainAxisSpacing: 8,
-                  ),
-                  itemBuilder: (BuildContext context, int index) {
-                    return GestureDetector(
-                      onTap: () {
-                        print("da nhan vao");
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF16213E),
-                          borderRadius: BorderRadius.circular(12),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.2),
-                              blurRadius: 5,
-                              offset: const Offset(0, 3),
-                            ),
-                          ],
+              child: AspectRatio(
+                aspectRatio: 1.0,
+                child: Container(
+                  margin: const EdgeInsets.all(30),
+                  child: GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: 9,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10,
                         ),
-                      ),
-                    );
-                  },
+                    itemBuilder: (BuildContext context, int index) {
+                      return GestureDetector(
+                        onTap: () {
+                          print("da nhan vao");
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF16213E),
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withValues(alpha: 0.5),
+                                blurRadius: 5,
+                                offset: const Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ),
             ),
