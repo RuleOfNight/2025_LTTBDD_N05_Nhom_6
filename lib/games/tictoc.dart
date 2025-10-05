@@ -88,8 +88,14 @@ class _TicTocGameState extends State<TicTocGame> {
       } else if (nguoiThang == 'O') {
         diemO++;
       }
+      hienThiThongBao(
+        "Chúc mừng",
+        "Người chơi ${(nguoiThang)} đã chiến thắng!",
+        Colors.red,
+      );
     } else if (daDanhDau == 9) {
       troChoiCheck = true;
+      hienThiThongBao("Haizzza!!", "Lại hòa rồi :v", Colors.yellow);
     }
   }
 
@@ -116,7 +122,20 @@ class _TicTocGameState extends State<TicTocGame> {
           actions: [
             Center(
               child: TextButton(
-                onPressed: () {},
+                style: TextButton.styleFrom(
+                  backgroundColor: const Color(0xFFE94560),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 30,
+                    vertical: 12,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+                onPressed: () {
+                  choiLai();
+                  Navigator.of(context).pop();
+                },
                 child: const Text(
                   "Chơi Lại",
                   style: TextStyle(color: Colors.white, fontSize: 16),
