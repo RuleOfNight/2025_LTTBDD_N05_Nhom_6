@@ -22,10 +22,38 @@ class _SudokuGameState extends State<SudokuGame> {
   int? selectedRow;
   int? selectedCol;
 
+
   @override
   Widget build(BuildContext context) {
+    if (showDifficultySelector) {  // Menu chọn độ khó
+      return Scaffold(
+        appBar: AppBar(title: const Text('Sudoku')),
+        backgroundColor: const Color(0xFF0F0F1E),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text('Chọn độ khó',
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              const SizedBox(height: 40),
+              _buildDifficultyButton('Dễ', Colors.green),
+              const SizedBox(height: 16),
+              _buildDifficultyButton('Trung bình', Colors.orange),
+              const SizedBox(height: 16),
+              _buildDifficultyButton('Asian', Colors.red),
+            ],
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Sudoku')),
+      appBar: AppBar(title: const Text('Sudoku 9x9')),
       backgroundColor: const Color(0xFF0F0F1E),
       body: const Center(
         child: Text(
@@ -35,4 +63,50 @@ class _SudokuGameState extends State<SudokuGame> {
       ),
     );
   }
+
+
+  /// Widget menu chọn độ khó
+  Widget _buildDifficultyButton(String difficulty, Color color) {
+    return ElevatedButton(
+      onPressed: () {
+
+        setState(() {
+          showDifficultySelector = false;
+        });
+        
+      },
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color(0xFF1A1A2E),
+        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
+      child: SizedBox(
+        width: 200,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              difficulty,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: color.withOpacity(0.3),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Icon(Icons.grid_4x4, color: color, size: 24),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
 }
