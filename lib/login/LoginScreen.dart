@@ -25,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   StateMachineController? stateMachineController;
 
-  var bearAnimation = "imgs/bear.riv";
+  var bearAnimation = "imgs/bear2.riv";
 
   @override
   void initState() {
@@ -57,8 +57,8 @@ class _LoginScreenState extends State<LoginScreen> {
           successTrigger = element as SMITrigger;
         } else if (element.name == "trigFail") {
           failTrigger = element as SMITrigger;
-        } else if (element.name == "isChecking") {
-          isChecking = element as SMIBool;
+        } else if (element.name == "isSeeking") {
+          isSeeking = element as SMIBool;
         }
       }
     }
@@ -225,6 +225,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: () {
                             setState(() {
                               seePassword = !seePassword;
+                              if (seePassword == true) {
+                                isSeeking?.change(true);
+                              } else {
+                                isSeeking?.change(false);
+                              }
                             });
                           },
                         ),
