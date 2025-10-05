@@ -93,6 +93,19 @@ class _TicTocGameState extends State<TicTocGame> {
     }
   }
 
+  hienThiThongBao(String tieuDe, String noiDung, Color? mau) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: const Color(0xFF1A1A2E),
+          title: Text(tieuDe),
+          content: Text(noiDung),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
