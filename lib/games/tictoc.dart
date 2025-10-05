@@ -9,7 +9,7 @@ class TicTocGame extends StatefulWidget {
 
 class _TicTocGameState extends State<TicTocGame> {
   bool luot = true; // true la X, false la O
-  bool chienThang = false;
+  bool troChoiCheck = false;
 
   List<String> mangXO = List.filled(9, "");
   int diemX = 0;
@@ -55,7 +55,7 @@ class _TicTocGameState extends State<TicTocGame> {
       mangXO = List.filled(9, "");
       daDanhDau = 0;
       luot = true;
-      chienThang = false;
+      troChoiCheck = false;
     });
   }
 
@@ -82,12 +82,14 @@ class _TicTocGameState extends State<TicTocGame> {
     }
 
     if (nguoiThang != "") {
-      chienThang = true;
+      troChoiCheck = true;
       if (nguoiThang == 'X') {
         diemX++;
       } else if (nguoiThang == 'O') {
         diemO++;
       }
+    } else if (daDanhDau == 9) {
+      troChoiCheck = true;
     }
   }
 
