@@ -122,10 +122,12 @@ class _LoginScreenState extends State<LoginScreen> {
     isSeeking?.change(false);
     if (emailController.text == "admin" && passController.text == "admin") {
       successTrigger?.fire();
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const MainScreen()),
-      );
+      Future.delayed(const Duration(seconds: 1), () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const MainScreen()),
+        );
+      });
     } else {
       failTrigger?.fire();
     }
