@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:games_platform/games/tictoc.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -113,7 +112,7 @@ class HomeScreen extends StatelessWidget {
         'name': 'Tic Tac Toe',
         'icon': Icons.grid_3x3,
         'color': Colors.blue,
-        'screen': const TicTocGame(),
+        'screen': const Placeholder(),
       },
       {
         'name': 'Rắn Săn Mồi',
@@ -135,6 +134,7 @@ class HomeScreen extends StatelessWidget {
       },
     ];
 
+    // Display grid game theo 2 cột
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
