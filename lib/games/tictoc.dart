@@ -161,6 +161,12 @@ class _TicTocGameState extends State<TicTocGame> {
         title: const Text('Tic Tac Toe', style: TextStyle(color: Colors.white)),
         backgroundColor: const Color(0xFF1A1A2E),
         elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context); // Quay về màn hình trước đó (HomeScreen)
+          },
+        ),
       ),
       body: SafeArea(
         child: Column(
