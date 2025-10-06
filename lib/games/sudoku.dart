@@ -267,7 +267,8 @@ class _SudokuGameState extends State<SudokuGame> {
                 alignment: WrapAlignment.center,
                 children: List.generate(9, (i) => _buildNumberButton(i + 1),),
               ),
-              
+              const SizedBox(height: 10),
+              _buildNumberButton(0, label: 'Xóa'),
               const SizedBox(height: 20),
             ],
           ),
@@ -316,13 +317,15 @@ class _SudokuGameState extends State<SudokuGame> {
   }
 
   /// Widget numpad
-  Widget _buildNumberButton(int num) {
+  Widget _buildNumberButton(int num, {String? label}) { // label để hiển thị chữ thay vì số (dùng cho nút xóa)
     return ElevatedButton(
       onPressed: () {
-        print('Chọn số: $num');
+        print('Selected: ${label ?? num}');
       },
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.purpleAccent,
+        backgroundColor: num == 0 
+            ? Colors.red.withOpacity(0.3) 
+            : Colors.purpleAccent,
         padding: const EdgeInsets.all(16),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
@@ -330,7 +333,7 @@ class _SudokuGameState extends State<SudokuGame> {
         minimumSize: const Size(50, 50),
       ),
       child: Text(
-        num.toString(),
+        label ?? num.toString(),
         style: const TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.bold,
@@ -339,5 +342,4 @@ class _SudokuGameState extends State<SudokuGame> {
       ),
     );
   }
-
 }
