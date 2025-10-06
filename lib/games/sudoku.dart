@@ -217,16 +217,19 @@ class _SudokuGameState extends State<SudokuGame> {
                   itemBuilder: (ctx, index) {
                     int row = index ~/ 9; // Xác định hàng của ô (chia lấy phần nguyên)
                     int col = index % 9;  // Xác định cột của ô (chia lấy phần dư)
+                    bool selected = selectedRow == row && selectedCol == col;
 
                     return GestureDetector(
                       onTap: () => _onCellTap(row, col),
-                      return Container(
+                      child: Container(
                         width: cellSize,
                         height: cellSize,
                         decoration: BoxDecoration( // hightlight ô được chọn
-                          color: selected
-                              ? Colors.purpleAccent.withOpacity(0.3)
-                              : const Color(0xFF0F0F1E),
+                          color: isFixed[row][col]
+                              ? Colors.grey.withOpacity(0.3)
+                              : (selected
+                                  ? Colors.purpleAccent.withOpacity(0.3)
+                                  : const Color(0xFF0F0F1E)),
                           border: Border.all(
                             color: selected
                                 ? Colors.purpleAccent
@@ -234,23 +237,35 @@ class _SudokuGameState extends State<SudokuGame> {
                             width: selected ? 2 : 1,
                           ),
                         ),
+
                         child: Center(
                           child: Text(
-                            // Hiển thị số trong ô, hoặc để trống nếu giá trị là 0
                             board[row][col] == 0 
                                 ? '' 
                                 : board[row][col].toString(),
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                              color: isFixed[row][col]
+                                  ? Colors.white
+                                  : Colors.purpleAccent,
                             ),
                           ),
                         ),
-                      );
-                    )
+                      ),
+                    );
                   },
                 ),
+              ),
+              const SizedBox(height: 30),
+              const Text('Chọn số',style: TextStyle(fontSize: 18, color: Colors.white70),),
+              const SizedBox(height: 10),
+              // Number pad
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                alignment: WrapAlignment.center,
+                children: List.generate(9, (i) => _buildNumberButton(i + 1),),
               ),
               
               const SizedBox(height: 20),
@@ -260,7 +275,6 @@ class _SudokuGameState extends State<SudokuGame> {
       ),
     );
   }
-
 
   /// Widget menu chọn độ khó
   Widget _buildDifficultyButton(String difficulty, Color color) {
@@ -296,6 +310,31 @@ class _SudokuGameState extends State<SudokuGame> {
               child: Icon(Icons.grid_4x4, color: color, size: 24),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  /// Widget numpad
+  Widget _buildNumberButton(int num) {
+    return ElevatedButton(
+      onPressed: () {
+        print('Chọn số: $num');
+      },
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.purpleAccent,
+        padding: const EdgeInsets.all(16),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        minimumSize: const Size(50, 50),
+      ),
+      child: Text(
+        num.toString(),
+        style: const TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
         ),
       ),
     );
