@@ -143,6 +143,17 @@ class _SudokuGameState extends State<SudokuGame> {
     }
   }
 
+
+  void _onCellTap(int row, int col) {
+    // Không cho chọn ô đã có giá trị mà game khởi tạo
+    if (isFixed[row][col]) return;
+    
+    setState(() {
+      selectedRow = row;
+      selectedCol = col;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     if (showDifficultySelector) {  // Menu chọn độ khó
@@ -207,30 +218,33 @@ class _SudokuGameState extends State<SudokuGame> {
                     int row = index ~/ 9; // Xác định hàng của ô (chia lấy phần nguyên)
                     int col = index % 9;  // Xác định cột của ô (chia lấy phần dư)
 
-                    return Container(
-                      width: cellSize,
-                      height: cellSize,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF0F0F1E),
-                        border: Border.all(
-                          color: Colors.grey.withOpacity(0.3),
-                          width: 1,
-                        ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          // Hiển thị số trong ô, hoặc để trống nếu giá trị là 0
-                          board[row][col] == 0 
-                              ? '' 
-                              : board[row][col].toString(),
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                    return GestureDetector(
+                      onTap: () => _onCellTap(row, col),
+                      return Container(
+                        width: cellSize,
+                        height: cellSize,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF0F0F1E),
+                          border: Border.all(
+                            color: Colors.grey.withOpacity(0.3),
+                            width: 1,
                           ),
                         ),
-                      ),
-                    );
+                        child: Center(
+                          child: Text(
+                            // Hiển thị số trong ô, hoặc để trống nếu giá trị là 0
+                            board[row][col] == 0 
+                                ? '' 
+                                : board[row][col].toString(),
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      );
+                    )
                   },
                 ),
               ),
