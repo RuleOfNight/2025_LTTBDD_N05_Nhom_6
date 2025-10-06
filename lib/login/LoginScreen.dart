@@ -13,7 +13,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   var emailController = TextEditingController();
   var passController = TextEditingController();
-  bool seePassword = false;
+  bool hidePass = true;
 
   Artboard? artboard;
   SMITrigger? failTrigger;
@@ -25,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   StateMachineController? stateMachineController;
 
-  var bearAnimation = "imgs/bear2.riv";
+  var bearAnimation = "imgs/bear3.riv";
 
   @override
   void initState() {
@@ -119,6 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void login() {
     isChecking?.change(false);
     isHandsUp?.change(false);
+    isSeeking?.change(false);
     if (emailController.text == "admin" && passController.text == "admin") {
       successTrigger?.fire();
       Navigator.pushReplacement(
@@ -203,7 +204,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: TextFormField(
                       onTap: handsUp,
                       controller: passController,
-                      obscureText: seePassword, // dùng biến thay vì true
+                      obscureText: hidePass, // dùng biến thay vì true
                       onChanged: (value) => print("Password: $value"),
                       decoration: InputDecoration(
                         labelText: "Password",
@@ -217,15 +218,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         // 👇 Thêm icon mắt để show/hide mật khẩu
                         suffixIcon: IconButton(
                           icon: Icon(
-                            seePassword
-                                ? Icons.visibility
-                                : Icons.visibility_off,
+                            hidePass ? Icons.visibility_off : Icons.visibility,
                             color: Colors.white,
                           ),
                           onPressed: () {
                             setState(() {
-                              seePassword = !seePassword;
-                              if (seePassword == true) {
+                              hidePass = !hidePass;
+                              if (hidePass == false) {
                                 isSeeking?.change(true);
                               } else {
                                 isSeeking?.change(false);
@@ -244,21 +243,26 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPressed: () {},
                 child: Text('Sign Up', style: TextStyle(color: Colors.white)),
               ),
-              GestureDetector(
-                onTap: () {
+              ElevatedButton(
+                onPressed: () {
                   login();
                 },
-                child: Container(
-                  height: 50,
-                  width: 250,
-                  decoration: BoxDecoration(
-                    color: Colors.red,
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(250, 55),
+                  backgroundColor: Colors.red,
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: Text(
-                    "Login",
-                    style: TextStyle(color: Colors.white, fontSize: 25),
-                    textAlign: TextAlign.center,
+                  elevation: 6,
+                  shadowColor: Colors.redAccent,
+                ),
+                child: const Text(
+                  "Login",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1,
                   ),
                 ),
               ),
