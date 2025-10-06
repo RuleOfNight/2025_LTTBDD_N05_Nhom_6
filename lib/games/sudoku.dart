@@ -36,8 +36,64 @@ class _SudokuGameState extends State<SudokuGame> {
   }
 
   void _generateBoard(int emptySquares) {
-    print('Ngủ đã');
+
+    /// Let me explain
+    /// List trong Dart là kiểu tham chiếu (reference type)
+    /// Ví dụ nếu code cho board tham chiếu trực tiếp đến puzzle thì khi thay đổi board thì puzzle cũng bị thay đổi theo
+    /// Do đó cần tạo 1 bản sao (copy) của puzzle để board không bị ảnh hưởng khi thay đổi board
+    ///   List<List<int>> puzzle = [[1, 2, 3]];
+    ///   List<List<int>> board = puzzle; thì khi người chơi nhập số vào board thì puzzle gốc cũng bị thay đổi theo -> không bao giờ thắng được
+    /// Giải pháp là tạo 1 List mới cho board và copy từng phần tử từ puzzle sang
+
+    /// 1. List.generate(gridSize, ...)
+    ///   Tạo 1 List mới có độ dài là gridSize (9)
+    ///   Mỗi phần tử của List này là 1 List<int> mới được tạo ra bởi hàm bên trong
+
+    /// 2. List<int>.from(puzzle[i])
+    ///   Tạo 1 List<int> mới từ List<int> puzzle[i]
+    ///   Đảm bảo board[i] là 1 List<int> hoàn toàn mới, không tham chiếu đến puzzle[i]
+    ///   ví dụ: puzzle[0] = [1, 2, 3];
+    ///         List<int>.from(puzzle[0])  // → [1, 2, 3], nhưng là list MỚI trong vùng nhớ
+
+    /// 3. List.generate(...)
+    ///   chạy 9 lần cho i từ 0 đến 8 để tạo 9 List<int> mới cho board, mỗi lần sẽ tạo 1 list con riêng, sau đó gom tất cả vào list lớn bên ngoài
+    ///   kết quả: 
+    ///       board = [
+    ///         [copy của puzzle[0]],
+    ///         [copy của puzzle[1]],
+    ///         [copy của puzzle[2]],
+    ///         ...
+    ///       ]
+
+    /// Nói chung là: 
+    /// Layer tầng nông (List.generate) tạo khung 9 hàng
+    /// Layer tầng sâu (List.from) sao chép từng hàng của puzzle chứ không tham chiếu trực tiếp tới puzzle
+
+
+
+    // Số ô trống hợp lệ 0 -> 54 (cả matrix 9x9 có 81 ô, để lại ít nhất 27 ô có số mới đảm bảo cho ra nghiệm duy nhất có thể giải được)
+    final capped = emptySquares.clamp(0, 54);
+
+    // Gen board
+    final generator = SudokuGenerator(
+      emptySquares: capped,
+      uniqueSolution: true,
+    );
+
+    final puzzle = generator.newSudoku; // Bảng chơi
+    final solved = generator.newSudokuSolved; // Bảng đáp án
+
+    board = List.generate(gridSize, (i) => List<int>.from(puzzle[i]),); // giải thích ở trên
+    solution = List.generate(gridSize, (i) => List<int>.from(solved[i]),);
+    
+    // Đánh dấu các ô có số ban đầu là fixed (không sửa được)
+    // Nếu puzzle[i][j] != 0 thì là số ban đầu
+    isFixed = List.generate(gridSize, (i) => List.generate(gridSize, (j) => puzzle[i][j] != 0,),);
+    
+    // Khởi tạo mảng error (ban đầu không có lỗi nào)
+    isError = List.generate(gridSize, (_) => List.filled(gridSize, false),);
   }
+
 
 
   // Xử lý khi người dùng chọn số từ number pad
@@ -117,7 +173,7 @@ class _SudokuGameState extends State<SudokuGame> {
     }
 
     // Màn hình game
-    const double cellSize = 35;
+    const double cellSize = 35; // size mỗi ô
 
     return Scaffold(
       appBar: AppBar(
@@ -125,14 +181,12 @@ class _SudokuGameState extends State<SudokuGame> {
       ),
       backgroundColor: const Color(0xFF0F0F1E),
       body: Center(
-        child: SingleChildScrollView(
+        child: SingleChildScrollView( // Widget cho phép scroll
           child: Column(
             children: [
               const SizedBox(height: 20),
-              
-              // Bảng Sudoku 9x9
               Container(
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8), // Khoảng cách bên trong của bảng Sudoku
                 decoration: BoxDecoration(
                   color: const Color(0xFF1A1A2E),
                   borderRadius: BorderRadius.circular(12),
@@ -140,16 +194,18 @@ class _SudokuGameState extends State<SudokuGame> {
                 child: GridView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
+                  // NeverScrollableScrollPhysics: tắt khả năng scroll của GridView
+                  // Vì GridView nằm trong SingleChildScrollView, nên ta không muốn GridView tự cuộn
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 9, // 9 cột
-                    childAspectRatio: 1, // ô vuông
-                    crossAxisSpacing: 2,
-                    mainAxisSpacing: 2,
+                    crossAxisCount: 9, // Số cột trong GridView (9 cột cho Sudoku 9x9)
+                    childAspectRatio: 1, // Tỷ lệ chiều rộng và chiều cao của mỗi ô (1:1 để ô vuông)
+                    crossAxisSpacing: 2, // Khoảng cách ngang giữa các ô
+                    mainAxisSpacing: 2, // Khoảng cách dọc giữa các ô
                   ),
-                  itemCount: 81, // 9x9 = 81 ô
+                  itemCount: 81, // Tổng số ô (9x9 = 81)
                   itemBuilder: (ctx, index) {
-                    int row = index ~/ 9; // Hàng
-                    int col = index % 9;  // Cột
+                    int row = index ~/ 9; // Xác định hàng của ô (chia lấy phần nguyên)
+                    int col = index % 9;  // Xác định cột của ô (chia lấy phần dư)
 
                     return Container(
                       width: cellSize,
@@ -163,7 +219,7 @@ class _SudokuGameState extends State<SudokuGame> {
                       ),
                       child: Center(
                         child: Text(
-                          // Hiển thị số, hoặc rỗng nếu = 0
+                          // Hiển thị số trong ô, hoặc để trống nếu giá trị là 0
                           board[row][col] == 0 
                               ? '' 
                               : board[row][col].toString(),
