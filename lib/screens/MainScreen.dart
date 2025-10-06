@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'HomeScreen.dart';
+import 'GameScreen.dart';
 
 
 class MainScreen extends StatefulWidget {
@@ -14,7 +15,7 @@ class _MainScreenState extends State<MainScreen> {
 
     final List<Widget> _screens = [
     const HomeScreen(),
-    const Placeholder(),
+    const GameScreen(),
     const Placeholder(),
     const Placeholder(),
     ];
