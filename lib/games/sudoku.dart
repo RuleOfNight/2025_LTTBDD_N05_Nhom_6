@@ -223,11 +223,15 @@ class _SudokuGameState extends State<SudokuGame> {
                       return Container(
                         width: cellSize,
                         height: cellSize,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF0F0F1E),
+                        decoration: BoxDecoration( // hightlight ô được chọn
+                          color: selected
+                              ? Colors.purpleAccent.withOpacity(0.3)
+                              : const Color(0xFF0F0F1E),
                           border: Border.all(
-                            color: Colors.grey.withOpacity(0.3),
-                            width: 1,
+                            color: selected
+                                ? Colors.purpleAccent
+                                : Colors.grey.withOpacity(0.3),
+                            width: selected ? 2 : 1,
                           ),
                         ),
                         child: Center(
