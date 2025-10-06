@@ -116,13 +116,72 @@ class _SudokuGameState extends State<SudokuGame> {
       );
     }
 
+    // Màn hình game
+    const double cellSize = 35;
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Sudoku 9x9')),
+      appBar: AppBar(
+        title: const Text('Sudoku 9x9'),
+      ),
       backgroundColor: const Color(0xFF0F0F1E),
-      body: const Center(
-        child: Text(
-          'Placeholder',
-          style: TextStyle(color: Colors.white),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 20),
+              
+              // Bảng Sudoku 9x9
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF1A1A2E),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 9, // 9 cột
+                    childAspectRatio: 1, // ô vuông
+                    crossAxisSpacing: 2,
+                    mainAxisSpacing: 2,
+                  ),
+                  itemCount: 81, // 9x9 = 81 ô
+                  itemBuilder: (ctx, index) {
+                    int row = index ~/ 9; // Hàng
+                    int col = index % 9;  // Cột
+
+                    return Container(
+                      width: cellSize,
+                      height: cellSize,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF0F0F1E),
+                        border: Border.all(
+                          color: Colors.grey.withOpacity(0.3),
+                          width: 1,
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          // Hiển thị số, hoặc rỗng nếu = 0
+                          board[row][col] == 0 
+                              ? '' 
+                              : board[row][col].toString(),
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              
+              const SizedBox(height: 20),
+            ],
+          ),
         ),
       ),
     );
