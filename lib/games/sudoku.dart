@@ -40,6 +40,52 @@ class _SudokuGameState extends State<SudokuGame> {
   }
 
 
+  // Xử lý khi người dùng chọn số từ number pad
+  void _onNumberSelect(int num) {
+    if (selectedRow == null || selectedCol == null) return;
+    if (isFixed[selectedRow!][selectedCol!]) return;
+
+    setState(() {
+      board[selectedRow!][selectedCol!] = num;
+      _checkErrors();
+
+    });
+  }
+  void _checkErrors() {
+    // Reset tất cả ô về không lỗi
+    isError = List.generate(
+      gridSize,
+      (_) => List.filled(gridSize, false),
+    );
+    
+    // Duyệt qua từng ô
+    for (int i = 0; i < gridSize; i++) {
+      for (int j = 0; j < gridSize; j++) {
+        final value = board[i][j];
+        
+        // Bỏ qua ô trống
+        if (value == 0) continue;
+
+        // Kiểm tra trùng trong hàng
+        for (int k = 0; k < gridSize; k++) {
+          if (k != j && board[i][k] == value) {
+            // Đánh dấu lỗi nếu trùng số
+            isError[i][j] = true;
+            isError[i][k] = true;
+          }
+        }
+        
+        // Kiểm tra trùng trong cột
+        for (int k = 0; k < gridSize; k++) {
+          if (k != i && board[k][j] == value) {
+            // Đánh dấu lỗi nếu trùng số
+            isError[i][j] = true;
+            isError[k][j] = true;
+          }
+        }
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +133,7 @@ class _SudokuGameState extends State<SudokuGame> {
   Widget _buildDifficultyButton(String difficulty, Color color) {
     return ElevatedButton(
       onPressed: () => _selectDifficulty(difficulty),
-      
+
       style: ElevatedButton.styleFrom(
         backgroundColor: const Color(0xFF1A1A2E),
         padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
