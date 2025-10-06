@@ -94,6 +94,14 @@ class _SudokuGameState extends State<SudokuGame> {
     isError = List.generate(gridSize, (_) => List.filled(gridSize, false),);
   }
 
+ // Reset game về màn hình chọn độ khó
+  void _resetGame() {
+    setState(() {
+      showDifficultySelector = true;
+      selectedRow = null;
+      selectedCol = null;
+    });
+  }
 
 
   // Xử lý khi người dùng chọn số từ number pad
@@ -252,6 +260,12 @@ class _SudokuGameState extends State<SudokuGame> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Sudoku 9x9'),
+        actions: [
+          IconButton( // nút reset game
+            icon: const Icon(Icons.refresh),
+            onPressed: _resetGame,
+          ),
+        ],
       ),
       backgroundColor: const Color(0xFF0F0F1E),
       body: Center(
