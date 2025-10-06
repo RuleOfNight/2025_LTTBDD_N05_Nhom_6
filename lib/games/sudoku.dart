@@ -106,7 +106,7 @@ class _SudokuGameState extends State<SudokuGame> {
       _checkErrors();
 
       if (_checkWin()) {
-        print('Win r');
+        _showWin();
       }
     });
   }
@@ -189,6 +189,32 @@ class _SudokuGameState extends State<SudokuGame> {
     }
 
     return true;
+  }
+
+  void _showWin() {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        backgroundColor: const Color(0xFF1A1A2E),
+        title: const Text('🎉 Chúc mừng!', style: TextStyle(color: Colors.white),),
+        content: const Text(
+          'Bố mẹ hẳn phải tự hào về bạn lắm 🤏',
+          style: TextStyle(color: Colors.white70),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(ctx).pop(); // Đóng log
+              setState(() => showDifficultySelector = true); // Về màn hình chọn độ khó
+            },
+            child: const Text(
+              'Chơi Mới',
+              style: TextStyle(color: Colors.purpleAccent),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
