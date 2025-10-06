@@ -103,15 +103,17 @@ class _SudokuGameState extends State<SudokuGame> {
 
     setState(() {
       board[selectedRow!][selectedCol!] = num;
+      _checkErrors();
+
+      if (_checkWin()) {
+        print('Win r');
+      }
     });
   }
 
   void _checkErrors() {
     // Reset tất cả ô về không lỗi
-    isError = List.generate(
-      gridSize,
-      (_) => List.filled(gridSize, false),
-    );
+    isError = List.generate(gridSize, (_) => List.filled(gridSize, false),);
     
     // Duyệt qua từng ô
     for (int i = 0; i < gridSize; i++) {
@@ -151,6 +153,42 @@ class _SudokuGameState extends State<SudokuGame> {
       selectedRow = row;
       selectedCol = col;
     });
+  }
+
+  bool _checkWin() {
+    // Check xem tất cả ô đã điền và không có lỗi
+    for (int i = 0; i < gridSize; i++) {
+      for (int j = 0; j < gridSize; j++) {
+        if (board[i][j] == 0 || isError[i][j]) {
+          return false;
+        }
+      }
+    }
+    // Kiểm tra mỗi hàng có đủ 1-9 không trùng
+    for (int i = 0; i < gridSize; i++) {
+      final seen = <int>{}; // array để lưu số đã thấy
+      for (int j = 0; j < gridSize; j++) {
+        // Nếu số đã tồn tại trong array -> trùng -> éo win
+        if (seen.contains(board[i][j])) {
+          return false;
+        }
+        seen.add(board[i][j]);
+      }
+    }
+
+    // Kiểm tra mỗi cột có đủ 1-9 không trùng
+    for (int j = 0; j < gridSize; j++) {
+      final seen = <int>{};  // array để lưu số đã thấy
+      for (int i = 0; i < gridSize; i++) {
+        // Nếu số đã tồn tại trong array -> trùng -> éo win
+        if (seen.contains(board[i][j])) {
+          return false;
+        }
+        seen.add(board[i][j]);
+      }
+    }
+
+    return true;
   }
 
   @override
@@ -223,12 +261,14 @@ class _SudokuGameState extends State<SudokuGame> {
                       child: Container(
                         width: cellSize,
                         height: cellSize,
-                        decoration: BoxDecoration( // hightlight ô được chọn
-                          color: isFixed[row][col]
-                              ? Colors.grey.withOpacity(0.3)
-                              : (selected
-                                  ? Colors.purpleAccent.withOpacity(0.3)
-                                  : const Color(0xFF0F0F1E)),
+                        decoration: BoxDecoration( // hightlight ô được chọn/lỗi
+                          color: isError[row][col]
+                              ? Colors.red.withOpacity(0.3) // Ưu tiên ô lỗi cao nhất
+                              : (isFixed[row][col]
+                                  ? Colors.grey.withOpacity(0.3) // Ô gốc
+                                  : (selected 
+                                      ? Colors.purpleAccent.withOpacity(0.3) // Ô được chọn
+                                      : const Color(0xFF0F0F1E))),
                           border: Border.all(
                             color: selected
                                 ? Colors.purpleAccent
