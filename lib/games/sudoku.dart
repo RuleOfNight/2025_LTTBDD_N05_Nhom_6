@@ -103,10 +103,9 @@ class _SudokuGameState extends State<SudokuGame> {
 
     setState(() {
       board[selectedRow!][selectedCol!] = num;
-      _checkErrors();
-
     });
   }
+
   void _checkErrors() {
     // Reset tất cả ô về không lỗi
     isError = List.generate(
@@ -319,9 +318,7 @@ class _SudokuGameState extends State<SudokuGame> {
   /// Widget numpad
   Widget _buildNumberButton(int num, {String? label}) { // label để hiển thị chữ thay vì số (dùng cho nút xóa)
     return ElevatedButton(
-      onPressed: () {
-        print('Selected: ${label ?? num}');
-      },
+      onPressed: () => _onNumberSelect(num),
       style: ElevatedButton.styleFrom(
         backgroundColor: num == 0 
             ? Colors.red.withOpacity(0.3) 
