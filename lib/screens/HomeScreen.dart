@@ -155,6 +155,19 @@ class HomeScreen extends StatelessWidget {
 			end: Alignment.bottomRight,
 		),
 		),
+		child: Stack(
+		children: [
+			Positioned.fill(
+			child: Opacity(
+				opacity: 0.1,
+				child: Image.asset(
+				game['image'] as String,
+				fit: BoxFit.cover,
+				),
+			),
+			),
+		],
+		),
 	);
 	}
 
