@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'login/LoginScreen.dart';
 
 void main() {
-  runApp(const GamePlatformApp());
+  runApp(MaterialApp(home: LoginScreen()));
 }
 
 class GamePlatformApp extends StatelessWidget {
@@ -22,7 +22,7 @@ class GamePlatformApp extends StatelessWidget {
           elevation: 0,
         ),
       ),
-      home: const LoginScreen(),
+      home: LoginScreen(),
     );
   }
 }

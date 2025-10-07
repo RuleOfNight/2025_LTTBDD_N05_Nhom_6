@@ -3,7 +3,6 @@ import 'HomeScreen.dart';
 import 'GameScreen.dart';
 import 'LeaderBoard.dart';
 
-
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
 
@@ -14,13 +13,12 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
-    final List<Widget> _screens = [
+  final List<Widget> _screens = [
     const HomeScreen(),
     const GameScreen(),
     const LeaderboardScreen(),
     const Placeholder(),
-    ];
-
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +47,14 @@ class _MainScreenState extends State<MainScreen> {
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(icon: Icon(Icons.gamepad), label: 'Games'),
+<<<<<<< HEAD
             BottomNavigationBarItem(icon: Icon(Icons.leaderboard), label: 'Leaderboard'),
+=======
+            BottomNavigationBarItem(
+              icon: Icon(Icons.leaderboard),
+              label: 'History',
+            ),
+>>>>>>> origin/main
             BottomNavigationBarItem(icon: Icon(Icons.info), label: 'Dev Team'),
           ],
         ),
