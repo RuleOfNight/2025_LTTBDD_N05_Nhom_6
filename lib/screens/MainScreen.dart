@@ -47,14 +47,7 @@ class _MainScreenState extends State<MainScreen> {
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(icon: Icon(Icons.gamepad), label: 'Games'),
-<<<<<<< HEAD
             BottomNavigationBarItem(icon: Icon(Icons.leaderboard), label: 'Leaderboard'),
-=======
-            BottomNavigationBarItem(
-              icon: Icon(Icons.leaderboard),
-              label: 'History',
-            ),
->>>>>>> origin/main
             BottomNavigationBarItem(icon: Icon(Icons.info), label: 'Dev Team'),
           ],
         ),
