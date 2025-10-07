@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'MainScreen.dart';
 
 class Leaderboard extends StatefulWidget {
   const Leaderboard({super.key});
@@ -48,7 +49,17 @@ class _LeaderboardState extends State<Leaderboard> {
     ];
 
     return Scaffold(
+      backgroundColor: Color(0xFF1A1A2E),
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const MainScreen()),
+            );
+          },
+        ),
         title: const Text(
           'Bảng Xếp Hạng',
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -67,9 +78,24 @@ class _LeaderboardState extends State<Leaderboard> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Podium(finalLeaderboard[0], 2, 100, Colors.yellow),
-                Podium(finalLeaderboard[0], 1, 100, Colors.yellow),
-                Podium(finalLeaderboard[0], 3, 100, Colors.yellow),
+                Podium(
+                  finalLeaderboard[0],
+                  2,
+                  100,
+                  const Color.fromARGB(255, 231, 231, 231),
+                ),
+                Podium(
+                  finalLeaderboard[0],
+                  1,
+                  100,
+                  const Color.fromARGB(255, 255, 230, 0),
+                ),
+                Podium(
+                  finalLeaderboard[0],
+                  3,
+                  100,
+                  const Color.fromARGB(255, 187, 129, 21),
+                ),
               ],
             ),
           ),

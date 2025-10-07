@@ -137,6 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     // Scaffold là widget cung cấp cấu trúc cơ bản cho một màn hình
     return Scaffold(
+      backgroundColor: Color(0xFF1A1A2E),
       // Khi bàn phím bật, Scaffold KHÔNG co lại body
       resizeToAvoidBottomInset: false,
       // Có SingleChildScrollView → khi bàn phím bật, người dùng có thể scroll xuống để bấm nút Login
