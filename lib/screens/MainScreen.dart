@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'HomeScreen.dart';
 import 'GameScreen.dart';
+import 'LeaderBoard.dart';
 
 
 class MainScreen extends StatefulWidget {
@@ -16,7 +17,7 @@ class _MainScreenState extends State<MainScreen> {
     final List<Widget> _screens = [
     const HomeScreen(),
     const GameScreen(),
-    const Placeholder(),
+    const LeaderboardScreen(),
     const Placeholder(),
     ];
 
@@ -48,7 +49,7 @@ class _MainScreenState extends State<MainScreen> {
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(icon: Icon(Icons.gamepad), label: 'Games'),
-            BottomNavigationBarItem(icon: Icon(Icons.leaderboard), label: 'History'),
+            BottomNavigationBarItem(icon: Icon(Icons.leaderboard), label: 'Leaderboard'),
             BottomNavigationBarItem(icon: Icon(Icons.info), label: 'Dev Team'),
           ],
         ),
