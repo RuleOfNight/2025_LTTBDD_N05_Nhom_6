@@ -134,6 +134,22 @@ class _LeaderboardState extends State<Leaderboard> {
                         ),
                       ),
                     ),
+                    title: Row(
+                      children: [
+                        Text(
+                          player['avatar'] as String,
+                          style: const TextStyle(fontSize: 20),
+                        ),
+                        const SizedBox(width: 8.0),
+                        Text(
+                          player['name'] as String,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },
