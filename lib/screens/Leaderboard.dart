@@ -130,7 +130,18 @@ Widget Podium(
 ) {
   return Column(
     children: [
-      Container(width: 100, height: 100),
+      Container(
+        width: 100,
+        height: 100,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          image: DecorationImage(
+            image: NetworkImage(player['avatar'] as String),
+            fit: BoxFit.cover,
+          ),
+          border: Border.all(color: color, width: 3),
+        ),
+      ),
       Text(
         player['name'] as String,
         style: const TextStyle(
