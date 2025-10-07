@@ -9,150 +9,104 @@ class Leaderboard extends StatefulWidget {
 
 class _LeaderboardState extends State<Leaderboard> {
   Widget build(BuildContext context) {
-    const finalLeaderboard = [
+    final finalLeaderboard = [
       {
         'rank': 1,
         'name': 'Cao Thủ 123',
         'score': 9542,
-        'avatar': 'https://example.com/images/trophy.png',
+        'avatar':
+            'https://th.bing.com/th/id/R.2d1bf50167bbc01e5720092084ee3bf9?rik=xB9kSLFCBDfcOA&riu=http%3a%2f%2fthuthuatphanmem.vn%2fuploads%2f2018%2f09%2f11%2fhinh-anh-dep-6_044127357.jpg&ehk=g1hC5ADWBCALT4vPZWI4M%2fmjOeSVF32fzLUV6Iw7aN4%3d&risl=&pid=ImgRaw&r=0',
       },
       {
         'rank': 2,
         'name': 'Ninja Siêu Đẳng',
         'score': 8935,
-        'avatar': 'https://example.com/images/lightning.png',
+        'avatar':
+            'https://th.bing.com/th/id/R.2d1bf50167bbc01e5720092084ee3bf9?rik=xB9kSLFCBDfcOA&riu=http%3a%2f%2fthuthuatphanmem.vn%2fuploads%2f2018%2f09%2f11%2fhinh-anh-dep-6_044127357.jpg&ehk=g1hC5ADWBCALT4vPZWI4M%2fmjOeSVF32fzLUV6Iw7aN4%3d&risl=&pid=ImgRaw&r=0',
       },
       {
         'rank': 3,
         'name': 'Thánh Game',
         'score': 8720,
-        'avatar': 'https://example.com/images/controller.png',
+        'avatar':
+            'https://th.bing.com/th/id/R.2d1bf50167bbc01e5720092084ee3bf9?rik=xB9kSLFCBDfcOA&riu=http%3a%2f%2fthuthuatphanmem.vn%2fuploads%2f2018%2f09%2f11%2fhinh-anh-dep-6_044127357.jpg&ehk=g1hC5ADWBCALT4vPZWI4M%2fmjOeSVF32fzLUV6Iw7aN4%3d&risl=&pid=ImgRaw&r=0',
       },
       {
         'rank': 4,
         'name': 'Bắn Tỉa',
         'score': 8210,
-        'avatar': 'https://example.com/images/target.png',
+        'avatar':
+            'https://th.bing.com/th/id/R.2d1bf50167bbc01e5720092084ee3bf9?rik=xB9kSLFCBDfcOA&riu=http%3a%2f%2fthuthuatphanmem.vn%2fuploads%2f2018%2f09%2f11%2fhinh-anh-dep-6_044127357.jpg&ehk=g1hC5ADWBCALT4vPZWI4M%2fmjOeSVF32fzLUV6Iw7aN4%3d&risl=&pid=ImgRaw&r=0',
       },
       {
         'rank': 5,
         'name': 'Chạy Nhanh',
         'score': 7890,
-        'avatar': 'https://example.com/images/rocket.png',
-      },
-      {
-        'rank': 6,
-        'name': 'Thợ Pixel',
-        'score': 7530,
-        'avatar': 'https://example.com/images/sparkle.png',
-      },
-      {
-        'rank': 7,
-        'name': 'Sát Thủ Bóng Đêm',
-        'score': 7300,
-        'avatar': 'https://example.com/images/assassin.png',
-      },
-      {
-        'rank': 8,
-        'name': 'Bậc Thầy Combo',
-        'score': 7105,
-        'avatar': 'https://example.com/images/combo.png',
-      },
-      {
-        'rank': 9,
-        'name': 'Xạ Thủ Ảo Diệu',
-        'score': 6880,
-        'avatar': 'https://example.com/images/sniper.png',
-      },
-      {
-        'rank': 10,
-        'name': 'Phù Thủy Điện',
-        'score': 6700,
-        'avatar': 'https://example.com/images/wizard.png',
-      },
-      {
-        'rank': 11,
-        'name': 'Chiến Thần',
-        'score': 6555,
-        'avatar': 'https://example.com/images/warrior.png',
-      },
-      {
-        'rank': 12,
-        'name': 'Thần Tốc',
-        'score': 6380,
-        'avatar': 'https://example.com/images/fast.png',
-      },
-      {
-        'rank': 13,
-        'name': 'Kỹ Sư Game',
-        'score': 6200,
-        'avatar': 'https://example.com/images/engineer.png',
-      },
-      {
-        'rank': 14,
-        'name': 'Thám Tử 8x',
-        'score': 6050,
-        'avatar': 'https://example.com/images/detective.png',
-      },
-      {
-        'rank': 15,
-        'name': 'Lính Đánh Thuê',
-        'score': 5900,
-        'avatar': 'https://example.com/images/mercenary.png',
+        'avatar':
+            'https://th.bing.com/th/id/R.2d1bf50167bbc01e5720092084ee3bf9?rik=xB9kSLFCBDfcOA&riu=http%3a%2f%2fthuthuatphanmem.vn%2fuploads%2f2018%2f09%2f11%2fhinh-anh-dep-6_044127357.jpg&ehk=g1hC5ADWBCALT4vPZWI4M%2fmjOeSVF32fzLUV6Iw7aN4%3d&risl=&pid=ImgRaw&r=0',
       },
     ];
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Bảng Xếp Hạng'),
+        title: const Text(
+          'Bảng Xếp Hạng',
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
         actions: [
-          IconButton(icon: const Icon(Icons.refresh), onPressed: () {}),
+          IconButton(
+            icon: const Icon(Icons.refresh, size: 28),
+            onPressed: () {},
+          ),
         ],
       ),
       body: Column(
         children: [
+          Podium(finalLeaderboard[0], 1, 100, Colors.yellow),
           Expanded(
             child: ListView.builder(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(16),
               itemCount: finalLeaderboard.length,
               itemBuilder: (context, index) {
                 final player = finalLeaderboard[index];
                 return Container(
-                  margin: const EdgeInsets.only(bottom: 12),
+                  margin: const EdgeInsets.only(bottom: 16),
                   decoration: BoxDecoration(
                     color: const Color(0xFF1A1A2E),
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.3),
+                        blurRadius: 4,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
                   ),
                   child: ListTile(
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 12,
+                    ),
                     leading: CircleAvatar(
-                      backgroundColor: Colors.purple,
-                      child: Text(
-                        '#${player['rank']}',
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+                      radius: 30,
+                      backgroundImage: NetworkImage(player['avatar'] as String),
+                    ),
+                    title: Text(
+                      player['name'] as String,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                     ),
-                    title: Row(
-                      children: [
-                        Text(
-                          player['avatar'] as String,
-                          style: const TextStyle(fontSize: 20),
-                        ),
-                        const SizedBox(width: 8.0),
-                        Text(
-                          player['name'] as String,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
+                    subtitle: Text(
+                      'Hạng ${player['rank']}',
+                      style: const TextStyle(fontSize: 14, color: Colors.grey),
                     ),
                     trailing: Text(
                       '${player['score']} điểm',
                       style: const TextStyle(
+                        fontSize: 16,
                         color: Colors.purpleAccent,
                         fontWeight: FontWeight.bold,
                       ),
@@ -166,4 +120,35 @@ class _LeaderboardState extends State<Leaderboard> {
       ),
     );
   }
+}
+
+Widget Podium(
+  Map<String, dynamic> player,
+  int rank,
+  double height,
+  Color color,
+) {
+  return Column(
+    children: [
+      Container(width: 100, height: 100),
+      Text(
+        player['name'] as String,
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+          fontSize: 12,
+        ),
+      ),
+      Text(
+        'Điểm: ${player['score']}',
+        style: const TextStyle(color: Colors.grey, fontSize: 11),
+      ),
+      const SizedBox(height: 8.0),
+      Container(
+        width: 150,
+        height: height,
+        child: Center(child: Text('#$rank')),
+      ),
+    ],
+  );
 }
