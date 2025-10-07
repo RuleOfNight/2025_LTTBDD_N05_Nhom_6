@@ -68,6 +68,7 @@ class HomeScreen extends StatelessWidget {
 					_buildDialogHeader(name),
 					_buildDialogImage(gameImage),
 					_buildDialogContent(description, instructions),
+					_buildDialogCloseButton(context),
 					],
 				),
 				),
@@ -170,6 +171,27 @@ class HomeScreen extends StatelessWidget {
 			),
 			),
 		],
+		),
+	);
+	}
+	
+	Widget _buildDialogCloseButton(BuildContext context) {
+	return Padding(
+		padding: const EdgeInsets.all(16),
+		child: TextButton(
+		onPressed: () => Navigator.pop(context),
+		style: TextButton.styleFrom(
+			backgroundColor: Colors.purpleAccent.withOpacity(0.3),
+			padding: const EdgeInsets.symmetric(vertical: 12),
+		),
+		child: const Text(
+			'Đóng',
+			style: TextStyle(
+			fontSize: 16,
+			fontWeight: FontWeight.bold,
+			color: Colors.white,
+			),
+		),
 		),
 	);
 	}
