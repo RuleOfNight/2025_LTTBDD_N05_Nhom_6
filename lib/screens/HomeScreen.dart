@@ -106,32 +106,32 @@ class HomeScreen extends StatelessWidget {
 	}
 
 	Widget _buildGameBanners(BuildContext context) {
-	final games = [
-		{
-		'name': 'Tic Tac Toe',
-		'icon': Icons.grid_3x3,
-		'color': Colors.blue,
-		'image': 'imgs/screenshot_1759767094.png',
-		'description': '',
-		'instructions': '',
-		},
-		{
-		'name': 'Sudoku',
-		'icon': Icons.calculate,
-		'color': Colors.teal,
-		'image': 'imgs/screenshot_1759767128.png',
-		'description': '',
-		'instructions': '',
-		},
-		{
-		'name': 'Rắn Săn Mồi',
-		'icon': Icons.widgets,
-		'color': Colors.green,
-		'image': 'imgs/screenshot_1759767175.png',
-		'description': '',
-		'instructions': '',
-		},
-	];
+		final games = [
+			{
+			'name': 'Tic Tac Toe',
+			'icon': Icons.grid_3x3,
+			'color': Colors.blue,
+			'image': 'imgs/screenshot_1759767094.png',
+			'description': 'Tic Tac Toe là trò chơi đơn giản, nơi bạn cần xếp 3 ký tự liên tiếp để thắng.',
+			'instructions': 'Chọn ô để đánh dấu X hoặc O. Người chơi nào xếp được 3 ký tự liên tiếp trước sẽ thắng, bạn cũng có thể chặn người chơi khác lại bằng dấu của mình.',
+			},
+			{
+			'name': 'Sudoku',
+			'icon': Icons.calculate,
+			'color': Colors.teal,
+			'image': 'imgs/screenshot_1759767128.png',
+			'description': 'Sudoku là trò chơi giải đố với bảng 9x9, nơi bạn cần điền số từ 1 đến 9.',
+			'instructions': 'Điền số vào các ô trống sao cho mỗi hàng, cột và ô 3x3 không có số trùng lặp.',
+			},
+			{
+			'name': 'Rắn Săn Mồi',
+			'icon': Icons.widgets,
+			'color': Colors.green,
+			'image': 'imgs/screenshot_1759767175.png',
+			'description': 'Nhiệm vụ của bạn là giúp con rắn thu nhập thức ăn, và giữ cho nó sống lâu nhất có thể',
+			'instructions': 'Điều khiển rắn thu nhập thức ăn bằng các phím mũi tên. Tránh va vào tường hoặc chính mình.',
+			},
+		];
 
 	return Column(
 		children: games.map((game) {
