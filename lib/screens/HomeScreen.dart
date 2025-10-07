@@ -1,37 +1,53 @@
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+	const HomeScreen({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _buildAppBar(),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 20),
-          ],
-        ),
-      ),
-    );
-  }
+	@override
+	Widget build(BuildContext context) {
+		return Scaffold(
+		appBar: _buildAppBar(),
+		body: SingleChildScrollView(
+			child: Column(
+			crossAxisAlignment: CrossAxisAlignment.start,
+			children: [
+				_buildBanner(context),
+				const SizedBox(height: 20),
+			],
+			),
+		),
+		);
+	}
 
-  AppBar _buildAppBar() {
-    return AppBar(
-      title: const Text(
-        'GameHub',
-        style: TextStyle(fontWeight: FontWeight.bold),
-      ),
-      actions: [
-        IconButton(
-          icon: const Icon(Icons.notifications),
-          onPressed: () {
-			// lazy
-          },
-        ),
-      ],
-    );
-  }
+	AppBar _buildAppBar() {
+		return AppBar(
+		title: const Text(
+			'GameHub',
+			style: TextStyle(fontWeight: FontWeight.bold),
+		),
+		actions: [
+			IconButton(
+			icon: const Icon(Icons.notifications),
+			onPressed: () {
+				// lazy
+			},
+			),
+		],
+		);
+	}
+
+	Widget _buildBanner(BuildContext context) {
+		return Container(
+		margin: const EdgeInsets.all(16),
+		height: 180,
+		decoration: BoxDecoration(
+			borderRadius: BorderRadius.circular(20),
+			gradient: const LinearGradient(
+			colors: [Color(0xFF6B46C1), Color(0xFF9333EA)],
+			begin: Alignment.topLeft,
+			end: Alignment.bottomRight,
+			),
+		),
+		);
+	}
 }
