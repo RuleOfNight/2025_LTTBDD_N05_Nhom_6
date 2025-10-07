@@ -13,6 +13,7 @@ class HomeScreen extends StatelessWidget {
 			children: [
 				_buildBanner(context),
 				_buildTitle('About our games'),
+				_buildGameBanners(context),
 				const SizedBox(height: 20),
 			],
 			),
@@ -103,4 +104,48 @@ class HomeScreen extends StatelessWidget {
 		),
 	);
 	}
+
+	Widget _buildGameBanners(BuildContext context) {
+	final games = [
+		{
+		'name': 'Tic Tac Toe',
+		'icon': Icons.grid_3x3,
+		'color': Colors.blue,
+		'image': 'imgs/screenshot_1759767094.png',
+		'description': '',
+		'instructions': '',
+		},
+		{
+		'name': 'Sudoku',
+		'icon': Icons.calculate,
+		'color': Colors.teal,
+		'image': 'imgs/screenshot_1759767128.png',
+		'description': '',
+		'instructions': '',
+		},
+		{
+		'name': 'Rắn Săn Mồi',
+		'icon': Icons.widgets,
+		'color': Colors.green,
+		'image': 'imgs/screenshot_1759767175.png',
+		'description': '',
+		'instructions': '',
+		},
+	];
+
+	return Column(
+		children: games.map((game) {
+		return _buildGameBanner(game);
+		}).toList(),
+	);
+	}
+
+	Widget _buildGameBanner(Map<String, dynamic> game) {
+	return Container(
+		margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+		height: 120,
+		color: game['color'] as Color,
+	);
+	}
+
 }
