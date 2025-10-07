@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
 		),
 		);
 	}
-	
+
 	AppBar _buildAppBar() {
 		return AppBar(
 		title: const Text(
@@ -39,24 +39,40 @@ class HomeScreen extends StatelessWidget {
 	}
 
 	void _showGameInfoDialog(BuildContext context, String? name, String? description, String? instructions) {
-	showDialog(
-		context: context,
-		builder: (ctx) {
-		return Dialog(
-			backgroundColor: const Color(0xFF1A1A2E),
-			insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-			child: SingleChildScrollView(
-			child: Column(
-				crossAxisAlignment: CrossAxisAlignment.stretch,
-				mainAxisSize: MainAxisSize.min,
-				children: [
-				_buildDialogHeader(name),
-				],
-			),
-			),
+		String gameImage;
+		switch (name) {
+			case 'Tic Tac Toe':
+			gameImage = 'imgs/screenshot_1759767094.png';
+			break;
+			case 'Sudoku':
+			gameImage = 'imgs/screenshot_1759767128.png';
+			break;
+			case 'Rắn Săn Mồi':
+			gameImage = 'imgs/screenshot_1759767175.png';
+			break;
+			default:
+			gameImage = '';
+		}
+
+		showDialog(
+			context: context,
+			builder: (ctx) {
+			return Dialog(
+				backgroundColor: const Color(0xFF1A1A2E),
+				insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+				child: SingleChildScrollView(
+				child: Column(
+					crossAxisAlignment: CrossAxisAlignment.stretch,
+					mainAxisSize: MainAxisSize.min,
+					children: [
+					_buildDialogHeader(name),
+					_buildDialogImage(gameImage),
+					],
+				),
+				),
+			);
+			},
 		);
-		},
-	);
 	}
 
 	Widget _buildDialogHeader(String? name) {
@@ -77,6 +93,33 @@ class HomeScreen extends StatelessWidget {
 			fontFamily: 'Poppins-SemiBoldItalic',
 			color: Colors.white,
 			letterSpacing: 1.2,
+		),
+		),
+	);
+	}
+	
+	Widget _buildDialogImage(String gameImage) {
+	return Container(
+		height: 200,
+		margin: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+		decoration: BoxDecoration(
+		color: Colors.grey.shade800,
+		borderRadius: BorderRadius.circular(12),
+		),
+		child: ClipRRect(
+		borderRadius: BorderRadius.circular(12),
+		child: Image.asset(
+			gameImage,
+			fit: BoxFit.cover,
+			errorBuilder: (context, error, stackTrace) {
+			return const Center(
+				child: Icon(
+				Icons.image_not_supported,
+				color: Colors.white54,
+				size: 50,
+				),
+			);
+			},
 		),
 		),
 	);
