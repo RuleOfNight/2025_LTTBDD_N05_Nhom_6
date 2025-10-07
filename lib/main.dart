@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'login/LoginScreen.dart';
+import 'package:games_platform/screens/Leaderboard.dart';
 
 void main() {
-  runApp(MaterialApp(home: LoginScreen()));
+  runApp(MaterialApp(home: Leaderboard()));
 }
 
 class GamePlatformApp extends StatelessWidget {
