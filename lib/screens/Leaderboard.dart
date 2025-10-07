@@ -109,9 +109,37 @@ class _LeaderboardState extends State<Leaderboard> {
           IconButton(icon: const Icon(Icons.refresh), onPressed: () {}),
         ],
       ),
-      body: Column(children: [
-        
-        ]
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              padding: const EdgeInsets.all(10),
+              itemCount: finalLeaderboard.length,
+              itemBuilder: (context, index) {
+                final player = finalLeaderboard[index];
+                return Container(
+                  margin: const EdgeInsets.only(bottom: 12),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF1A1A2E),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Colors.purple,
+                      child: Text(
+                        '#${player['rank']}',
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
