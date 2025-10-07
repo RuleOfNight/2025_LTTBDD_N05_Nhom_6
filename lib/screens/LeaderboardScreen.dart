@@ -78,23 +78,29 @@ class _LeaderboardState extends State<Leaderboard> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Podium(
+                _podium(
                   finalLeaderboard[0],
                   2,
                   100,
                   const Color.fromARGB(255, 231, 231, 231),
+                  100,
+                  150,
                 ),
-                Podium(
+                _podium(
                   finalLeaderboard[0],
                   1,
                   100,
                   const Color.fromARGB(255, 255, 230, 0),
+                  150,
+                  150,
                 ),
-                Podium(
+                _podium(
                   finalLeaderboard[0],
                   3,
                   100,
                   const Color.fromARGB(255, 187, 129, 21),
+                  100,
+                  150,
                 ),
               ],
             ),
@@ -112,7 +118,7 @@ class _LeaderboardState extends State<Leaderboard> {
                     borderRadius: BorderRadius.circular(12),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.3),
+                        color: Colors.black.withAlpha(30),
                         blurRadius: 4,
                         offset: const Offset(0, 2),
                       ),
@@ -158,17 +164,19 @@ class _LeaderboardState extends State<Leaderboard> {
   }
 }
 
-Widget Podium(
+Widget _podium(
   Map<String, dynamic> player,
   int rank,
   double height,
   Color color,
+  double w,
+  double h,
 ) {
   return Column(
     children: [
       Container(
-        width: 100,
-        height: 100,
+        width: w,
+        height: h,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           image: DecorationImage(

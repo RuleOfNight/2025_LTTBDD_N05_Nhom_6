@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:games_platform/screens/LeaderBoard.dart';
+import 'package:games_platform/screens/LeaderboardScreen.dart';
 import 'HomeScreen.dart';
+import 'GameScreen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -28,7 +29,7 @@ class _MainScreenState extends State<MainScreen> {
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: Colors.purple.withOpacity(0.2),
+              color: Colors.purple.withAlpha(20),
               blurRadius: 20,
               offset: const Offset(0, -5),
             ),

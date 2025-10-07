@@ -323,20 +323,20 @@ class _SudokuGameState extends State<SudokuGame> {
                         decoration: BoxDecoration(
                           // hightlight ô được chọn/lỗi
                           color: isError[row][col]
-                              ? Colors.red.withOpacity(
-                                  0.3,
+                              ? Colors.red.withAlpha(
+                                  30,
                                 ) // Ưu tiên ô lỗi cao nhất
                               : (isFixed[row][col]
-                                    ? Colors.grey.withOpacity(0.3) // Ô gốc
+                                    ? Colors.grey.withAlpha(30) // Ô gốc
                                     : (selected
-                                          ? Colors.purpleAccent.withOpacity(
-                                              0.3,
+                                          ? Colors.purpleAccent.withAlpha(
+                                              30,
                                             ) // Ô được chọn
                                           : const Color(0xFF0F0F1E))),
                           border: Border.all(
                             color: selected
                                 ? Colors.purpleAccent
-                                : Colors.grey.withOpacity(0.3),
+                                : Colors.grey.withAlpha(30),
                             width: selected ? 2 : 1,
                           ),
                         ),
@@ -409,7 +409,7 @@ class _SudokuGameState extends State<SudokuGame> {
             Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: color.withOpacity(0.3),
+                color: color.withAlpha(30),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Icon(Icons.grid_4x4, color: color, size: 24),
@@ -427,7 +427,7 @@ class _SudokuGameState extends State<SudokuGame> {
       onPressed: () => _onNumberSelect(num),
       style: ElevatedButton.styleFrom(
         backgroundColor: num == 0
-            ? Colors.red.withOpacity(0.3)
+            ? Colors.red.withAlpha(30)
             : Colors.purpleAccent,
         padding: const EdgeInsets.all(16),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
