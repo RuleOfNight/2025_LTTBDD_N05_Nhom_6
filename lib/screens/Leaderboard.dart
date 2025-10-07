@@ -147,6 +147,11 @@ Widget Podium(
       Container(
         width: 150,
         height: height,
+        decoration: BoxDecoration(
+          color: color.withAlpha(90),
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
+          border: Border.all(color: color),
+        ),
         child: Center(
           child: Text(
             '#$rank',
