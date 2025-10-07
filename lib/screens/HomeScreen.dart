@@ -21,8 +21,35 @@ class HomeScreen extends StatelessWidget {
 		);
 	}
 
-	void _showGameInfo(BuildContext context, String? name, String? description, String? instructions) {
-
+	void _showGameInfoDialog(BuildContext context, String? name, String? description, String? instructions) {
+		showDialog(
+			context: context,
+			builder: (ctx) {
+			return Dialog(
+				backgroundColor: const Color(0xFF1A1A2E),
+				insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+				child: SingleChildScrollView(
+				child: Column(
+					crossAxisAlignment: CrossAxisAlignment.stretch,
+					mainAxisSize: MainAxisSize.min,
+					children: [
+					Container(
+						padding: const EdgeInsets.all(16),
+						child: Text(
+						name ?? '',
+						textAlign: TextAlign.center,
+						style: const TextStyle(
+							fontSize: 28,
+							color: Colors.white,
+						),
+						),
+					),
+					],
+				),
+				),
+			);
+			},
+		);
 	}
 	AppBar _buildAppBar() {
 		return AppBar(
@@ -140,7 +167,7 @@ class HomeScreen extends StatelessWidget {
 		children: games.map((game) {
 		return GestureDetector(
 			onTap: () {
-			_showGameInfo(
+			_showGameInfoDialog(
 				context,
 				game['name'] as String?,
 				game['description'] as String?,
