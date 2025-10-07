@@ -147,7 +147,16 @@ Widget Podium(
       Container(
         width: 150,
         height: height,
-        child: Center(child: Text('#$rank')),
+        child: Center(
+          child: Text(
+            '#$rank',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: color,
+            ),
+          ),
+        ),
       ),
     ],
   );
