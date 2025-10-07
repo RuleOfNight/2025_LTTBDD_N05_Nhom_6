@@ -6,8 +6,14 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const Center(
-        child: Text('Home Screen'),
+      appBar: _buildAppBar(),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 20),
+          ],
+        ),
       ),
     );
   }
@@ -18,6 +24,14 @@ class HomeScreen extends StatelessWidget {
         'GameHub',
         style: TextStyle(fontWeight: FontWeight.bold),
       ),
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.notifications),
+          onPressed: () {
+			// lazy
+          },
+        ),
+      ],
     );
   }
 }
