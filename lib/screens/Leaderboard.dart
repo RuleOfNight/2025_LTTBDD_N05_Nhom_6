@@ -62,7 +62,7 @@ class _LeaderboardState extends State<Leaderboard> {
       ),
       body: Column(
         children: [
-          Podium(finalLeaderboard[0], 1, 100, Colors.yellow),
+          Row(children: [Podium(finalLeaderboard[0], 1, 100, Colors.yellow)]),
           Expanded(
             child: ListView.builder(
               padding: const EdgeInsets.all(16),
