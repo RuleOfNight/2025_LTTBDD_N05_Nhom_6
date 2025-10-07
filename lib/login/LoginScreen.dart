@@ -13,6 +13,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   var emailController = TextEditingController();
   var passController = TextEditingController();
+  bool hidePass = true;
 
   Artboard? artboard;
   SMITrigger? failTrigger;
@@ -20,9 +21,11 @@ class _LoginScreenState extends State<LoginScreen> {
   SMIBool? isChecking;
   SMIBool? isHandsUp;
   SMINumber? numLook;
+  SMIBool? isSeeking;
+
   StateMachineController? stateMachineController;
 
-  var bearAnimation = "imgs/bear.riv";
+  var bearAnimation = "imgs/bear3.riv";
 
   @override
   void initState() {
@@ -31,8 +34,8 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<void> _loadRive() async {
-    final data = await rootBundle.load(bearAnimation);
     await RiveFile.initialize();
+    final data = await rootBundle.load(bearAnimation);
     final file = RiveFile.import(data);
     final art = file.mainArtboard;
     stateMachineController = StateMachineController.fromArtboard(
@@ -54,6 +57,8 @@ class _LoginScreenState extends State<LoginScreen> {
           successTrigger = element as SMITrigger;
         } else if (element.name == "trigFail") {
           failTrigger = element as SMITrigger;
+        } else if (element.name == "isSeeking") {
+          isSeeking = element as SMIBool;
         }
       }
     }
@@ -114,12 +119,15 @@ class _LoginScreenState extends State<LoginScreen> {
   void login() {
     isChecking?.change(false);
     isHandsUp?.change(false);
+    isSeeking?.change(false);
     if (emailController.text == "admin" && passController.text == "admin") {
       successTrigger?.fire();
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const MainScreen()),
-      );
+      Future.delayed(const Duration(seconds: 1), () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const MainScreen()),
+        );
+      });
     } else {
       failTrigger?.fire();
     }
@@ -180,6 +188,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               // Ô nhập Password
+              // Ô nhập Password
               Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: Container(
@@ -197,42 +206,65 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: TextFormField(
                       onTap: handsUp,
                       controller: passController,
-                      obscureText: true, // ẩn ký tự
+                      obscureText: hidePass, // dùng biến thay vì true
                       onChanged: (value) => print("Password: $value"),
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         labelText: "Password",
-                        hintText: "Nhap password...",
-                        icon: Icon(Icons.lock),
+                        hintText: "Nhập password...",
+                        icon: const Icon(Icons.lock),
                         focusColor: Colors.white,
-                        labelStyle: TextStyle(
+                        labelStyle: const TextStyle(
                           color: Colors.white,
                           fontSize: 18,
+                        ),
+                        // 👇 Thêm icon mắt để show/hide mật khẩu
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            hidePass ? Icons.visibility_off : Icons.visibility,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              hidePass = !hidePass;
+                              if (hidePass == false) {
+                                isSeeking?.change(true);
+                              } else {
+                                isSeeking?.change(false);
+                              }
+                            });
+                          },
                         ),
                       ),
                     ),
                   ),
                 ),
               ),
+
               const SizedBox(height: 10),
               MaterialButton(
                 onPressed: () {},
                 child: Text('Sign Up', style: TextStyle(color: Colors.white)),
               ),
-              GestureDetector(
-                onTap: () {
+              ElevatedButton(
+                onPressed: () {
                   login();
                 },
-                child: Container(
-                  height: 50,
-                  width: 250,
-                  decoration: BoxDecoration(
-                    color: Colors.red,
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(250, 55),
+                  backgroundColor: Colors.red,
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: Text(
-                    "Login",
-                    style: TextStyle(color: Colors.white, fontSize: 25),
-                    textAlign: TextAlign.center,
+                  elevation: 6,
+                  shadowColor: Colors.redAccent,
+                ),
+                child: const Text(
+                  "Login",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1,
                   ),
                 ),
               ),

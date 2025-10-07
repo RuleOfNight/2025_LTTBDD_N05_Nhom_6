@@ -11,13 +11,14 @@ class SudokuGame extends StatefulWidget {
 class _SudokuGameState extends State<SudokuGame> {
   static const int gridSize = 9;
   List<List<int>> board = []; // board
-  List<List<bool>> isFixed = []; // Đánh dấu ô gốc (chứa số mà chương trình tạo sẵn)
+  List<List<bool>> isFixed =
+      []; // Đánh dấu ô gốc (chứa số mà chương trình tạo sẵn)
   List<List<bool>> isError = []; // Ô lỗi
   List<List<int>> solution = []; // đáp án
-  
+
   // Menu chọn độ khó
   bool showDifficultySelector = true;
-  
+
   // Ô đang được chọn
   int? selectedRow;
   int? selectedCol;
@@ -25,9 +26,12 @@ class _SudokuGameState extends State<SudokuGame> {
   // Tạo bảng cho từng dif
   void _selectDifficulty(String difficulty) {
     int emptyCount = 30; // Default: Easy
-    
-    if (difficulty == 'Medium') {emptyCount = 45;} 
-    else if (difficulty == 'Asian') {emptyCount = 54;}
+
+    if (difficulty == 'Medium') {
+      emptyCount = 45;
+    } else if (difficulty == 'Asian') {
+      emptyCount = 54;
+    }
 
     setState(() {
       _generateBoard(emptyCount);
@@ -36,7 +40,6 @@ class _SudokuGameState extends State<SudokuGame> {
   }
 
   void _generateBoard(int emptySquares) {
-
     /// Let me explain
     /// List trong Dart là kiểu tham chiếu (reference type)
     /// Ví dụ nếu code cho board tham chiếu trực tiếp đến puzzle thì khi thay đổi board thì puzzle cũng bị thay đổi theo
@@ -57,7 +60,7 @@ class _SudokuGameState extends State<SudokuGame> {
 
     /// 3. List.generate(...)
     ///   chạy 9 lần cho i từ 0 đến 8 để tạo 9 List<int> mới cho board, mỗi lần sẽ tạo 1 list con riêng, sau đó gom tất cả vào list lớn bên ngoài
-    ///   kết quả: 
+    ///   kết quả:
     ///       board = [
     ///         [copy của puzzle[0]],
     ///         [copy của puzzle[1]],
@@ -65,11 +68,9 @@ class _SudokuGameState extends State<SudokuGame> {
     ///         ...
     ///       ]
 
-    /// Nói chung là: 
+    /// Nói chung là:
     /// Layer tầng nông (List.generate) tạo khung 9 hàng
     /// Layer tầng sâu (List.from) sao chép từng hàng của puzzle chứ không tham chiếu trực tiếp tới puzzle
-
-
 
     // Số ô trống hợp lệ 0 -> 54 (cả matrix 9x9 có 81 ô, để lại ít nhất 27 ô có số mới đảm bảo cho ra nghiệm duy nhất có thể giải được)
     final capped = emptySquares.clamp(0, 54);
@@ -83,18 +84,24 @@ class _SudokuGameState extends State<SudokuGame> {
     final puzzle = generator.newSudoku; // Bảng chơi
     final solved = generator.newSudokuSolved; // Bảng đáp án
 
-    board = List.generate(gridSize, (i) => List<int>.from(puzzle[i]),); // giải thích ở trên
-    solution = List.generate(gridSize, (i) => List<int>.from(solved[i]),);
-    
+    board = List.generate(
+      gridSize,
+      (i) => List<int>.from(puzzle[i]),
+    ); // giải thích ở trên
+    solution = List.generate(gridSize, (i) => List<int>.from(solved[i]));
+
     // Đánh dấu các ô có số ban đầu là fixed (không sửa được)
     // Nếu puzzle[i][j] != 0 thì là số ban đầu
-    isFixed = List.generate(gridSize, (i) => List.generate(gridSize, (j) => puzzle[i][j] != 0,),);
-    
+    isFixed = List.generate(
+      gridSize,
+      (i) => List.generate(gridSize, (j) => puzzle[i][j] != 0),
+    );
+
     // Khởi tạo mảng error (ban đầu không có lỗi nào)
-    isError = List.generate(gridSize, (_) => List.filled(gridSize, false),);
+    isError = List.generate(gridSize, (_) => List.filled(gridSize, false));
   }
 
- // Reset game về màn hình chọn độ khó
+  // Reset game về màn hình chọn độ khó
   void _resetGame() {
     setState(() {
       showDifficultySelector = true;
@@ -102,7 +109,6 @@ class _SudokuGameState extends State<SudokuGame> {
       selectedCol = null;
     });
   }
-
 
   // Xử lý khi người dùng chọn số từ number pad
   void _onNumberSelect(int num) {
@@ -121,13 +127,13 @@ class _SudokuGameState extends State<SudokuGame> {
 
   void _checkErrors() {
     // Reset tất cả ô về không lỗi
-    isError = List.generate(gridSize, (_) => List.filled(gridSize, false),);
-    
+    isError = List.generate(gridSize, (_) => List.filled(gridSize, false));
+
     // Duyệt qua từng ô
     for (int i = 0; i < gridSize; i++) {
       for (int j = 0; j < gridSize; j++) {
         final value = board[i][j];
-        
+
         // Bỏ qua ô trống
         if (value == 0) continue;
 
@@ -139,7 +145,7 @@ class _SudokuGameState extends State<SudokuGame> {
             isError[i][k] = true;
           }
         }
-        
+
         // Kiểm tra trùng trong cột
         for (int k = 0; k < gridSize; k++) {
           if (k != i && board[k][j] == value) {
@@ -152,11 +158,10 @@ class _SudokuGameState extends State<SudokuGame> {
     }
   }
 
-
   void _onCellTap(int row, int col) {
     // Không cho chọn ô đã có giá trị mà game khởi tạo
     if (isFixed[row][col]) return;
-    
+
     setState(() {
       selectedRow = row;
       selectedCol = col;
@@ -186,7 +191,7 @@ class _SudokuGameState extends State<SudokuGame> {
 
     // Kiểm tra mỗi cột có đủ 1-9 không trùng
     for (int j = 0; j < gridSize; j++) {
-      final seen = <int>{};  // array để lưu số đã thấy
+      final seen = <int>{}; // array để lưu số đã thấy
       for (int i = 0; i < gridSize; i++) {
         // Nếu số đã tồn tại trong array -> trùng -> éo win
         if (seen.contains(board[i][j])) {
@@ -204,7 +209,10 @@ class _SudokuGameState extends State<SudokuGame> {
       context: context,
       builder: (ctx) => AlertDialog(
         backgroundColor: const Color(0xFF1A1A2E),
-        title: const Text('🎉 Chúc mừng!', style: TextStyle(color: Colors.white),),
+        title: const Text(
+          '🎉 Chúc mừng!',
+          style: TextStyle(color: Colors.white),
+        ),
         content: const Text(
           'Bố mẹ hẳn phải tự hào về bạn lắm 🤏',
           style: TextStyle(color: Colors.white70),
@@ -213,7 +221,9 @@ class _SudokuGameState extends State<SudokuGame> {
           TextButton(
             onPressed: () {
               Navigator.of(ctx).pop(); // Đóng log
-              setState(() => showDifficultySelector = true); // Về màn hình chọn độ khó
+              setState(
+                () => showDifficultySelector = true,
+              ); // Về màn hình chọn độ khó
             },
             child: const Text(
               'Chơi Mới',
@@ -227,7 +237,8 @@ class _SudokuGameState extends State<SudokuGame> {
 
   @override
   Widget build(BuildContext context) {
-    if (showDifficultySelector) {  // Menu chọn độ khó
+    if (showDifficultySelector) {
+      // Menu chọn độ khó
       return Scaffold(
         appBar: AppBar(title: const Text('Sudoku')),
         backgroundColor: const Color(0xFF0F0F1E),
@@ -235,7 +246,8 @@ class _SudokuGameState extends State<SudokuGame> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text('Chọn độ khó',
+              const Text(
+                'Chọn độ khó',
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
@@ -261,7 +273,8 @@ class _SudokuGameState extends State<SudokuGame> {
       appBar: AppBar(
         title: const Text('Sudoku 9x9'),
         actions: [
-          IconButton( // nút reset game
+          IconButton(
+            // nút reset game
             icon: const Icon(Icons.refresh),
             onPressed: _resetGame,
           ),
@@ -269,31 +282,37 @@ class _SudokuGameState extends State<SudokuGame> {
       ),
       backgroundColor: const Color(0xFF0F0F1E),
       body: Center(
-        child: SingleChildScrollView( // Widget cho phép scroll
+        child: SingleChildScrollView(
+          // Widget cho phép scroll
           child: Column(
             children: [
               const SizedBox(height: 20),
               Container(
-                padding: const EdgeInsets.all(8), // Khoảng cách bên trong của bảng Sudoku
+                padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   color: const Color(0xFF1A1A2E),
                   borderRadius: BorderRadius.circular(12),
                 ),
+                // Thêm maxWidth để bảng không bị kéo quá to
+                constraints: const BoxConstraints(
+                  maxWidth: 500, // hoặc 400, tuỳ bạn muốn bảng to cỡ nào
+                ),
                 child: GridView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  // NeverScrollableScrollPhysics: tắt khả năng scroll của GridView
-                  // Vì GridView nằm trong SingleChildScrollView, nên ta không muốn GridView tự cuộn
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 9, // Số cột trong GridView (9 cột cho Sudoku 9x9)
-                    childAspectRatio: 1, // Tỷ lệ chiều rộng và chiều cao của mỗi ô (1:1 để ô vuông)
-                    crossAxisSpacing: 2, // Khoảng cách ngang giữa các ô
-                    mainAxisSpacing: 2, // Khoảng cách dọc giữa các ô
+                    crossAxisCount: 9,
+                    childAspectRatio: 1,
+                    crossAxisSpacing: 2,
+                    mainAxisSpacing: 2,
                   ),
-                  itemCount: 81, // Tổng số ô (9x9 = 81)
+                  itemCount: 81,
                   itemBuilder: (ctx, index) {
-                    int row = index ~/ 9; // Xác định hàng của ô (chia lấy phần nguyên)
-                    int col = index % 9;  // Xác định cột của ô (chia lấy phần dư)
+                    int row =
+                        index ~/
+                        9; // Xác định hàng của ô (chia lấy phần nguyên)
+                    int col =
+                        index % 9; // Xác định cột của ô (chia lấy phần dư)
                     bool selected = selectedRow == row && selectedCol == col;
 
                     return GestureDetector(
@@ -301,14 +320,19 @@ class _SudokuGameState extends State<SudokuGame> {
                       child: Container(
                         width: cellSize,
                         height: cellSize,
-                        decoration: BoxDecoration( // hightlight ô được chọn/lỗi
+                        decoration: BoxDecoration(
+                          // hightlight ô được chọn/lỗi
                           color: isError[row][col]
-                              ? Colors.red.withOpacity(0.3) // Ưu tiên ô lỗi cao nhất
+                              ? Colors.red.withOpacity(
+                                  0.3,
+                                ) // Ưu tiên ô lỗi cao nhất
                               : (isFixed[row][col]
-                                  ? Colors.grey.withOpacity(0.3) // Ô gốc
-                                  : (selected 
-                                      ? Colors.purpleAccent.withOpacity(0.3) // Ô được chọn
-                                      : const Color(0xFF0F0F1E))),
+                                    ? Colors.grey.withOpacity(0.3) // Ô gốc
+                                    : (selected
+                                          ? Colors.purpleAccent.withOpacity(
+                                              0.3,
+                                            ) // Ô được chọn
+                                          : const Color(0xFF0F0F1E))),
                           border: Border.all(
                             color: selected
                                 ? Colors.purpleAccent
@@ -319,8 +343,8 @@ class _SudokuGameState extends State<SudokuGame> {
 
                         child: Center(
                           child: Text(
-                            board[row][col] == 0 
-                                ? '' 
+                            board[row][col] == 0
+                                ? ''
                                 : board[row][col].toString(),
                             style: TextStyle(
                               fontSize: 18,
@@ -337,14 +361,17 @@ class _SudokuGameState extends State<SudokuGame> {
                 ),
               ),
               const SizedBox(height: 30),
-              const Text('Chọn số',style: TextStyle(fontSize: 18, color: Colors.white70),),
+              const Text(
+                'Chọn số',
+                style: TextStyle(fontSize: 18, color: Colors.white70),
+              ),
               const SizedBox(height: 10),
               // Number pad
               Wrap(
                 spacing: 8,
                 runSpacing: 8,
                 alignment: WrapAlignment.center,
-                children: List.generate(9, (i) => _buildNumberButton(i + 1),),
+                children: List.generate(9, (i) => _buildNumberButton(i + 1)),
               ),
               const SizedBox(height: 10),
               _buildNumberButton(0, label: 'Xóa'),
@@ -364,9 +391,7 @@ class _SudokuGameState extends State<SudokuGame> {
       style: ElevatedButton.styleFrom(
         backgroundColor: const Color(0xFF1A1A2E),
         padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
       child: SizedBox(
         width: 200,
@@ -396,17 +421,16 @@ class _SudokuGameState extends State<SudokuGame> {
   }
 
   /// Widget numpad
-  Widget _buildNumberButton(int num, {String? label}) { // label để hiển thị chữ thay vì số (dùng cho nút xóa)
+  Widget _buildNumberButton(int num, {String? label}) {
+    // label để hiển thị chữ thay vì số (dùng cho nút xóa)
     return ElevatedButton(
       onPressed: () => _onNumberSelect(num),
       style: ElevatedButton.styleFrom(
-        backgroundColor: num == 0 
-            ? Colors.red.withOpacity(0.3) 
+        backgroundColor: num == 0
+            ? Colors.red.withOpacity(0.3)
             : Colors.purpleAccent,
         padding: const EdgeInsets.all(16),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         minimumSize: const Size(50, 50),
       ),
       child: Text(
