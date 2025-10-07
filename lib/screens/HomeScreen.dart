@@ -11,4 +11,13 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
+
+  AppBar _buildAppBar() {
+    return AppBar(
+      title: const Text(
+        'GameHub',
+        style: TextStyle(fontWeight: FontWeight.bold),
+      ),
+    );
+  }
 }
