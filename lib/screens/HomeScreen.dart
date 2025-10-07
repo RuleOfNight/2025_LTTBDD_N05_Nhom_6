@@ -67,51 +67,7 @@ class HomeScreen extends StatelessWidget {
 					children: [
 					_buildDialogHeader(name),
 					_buildDialogImage(gameImage),
-					Padding(
-					padding: const EdgeInsets.all(16),
-					child: Column(
-						crossAxisAlignment: CrossAxisAlignment.start,
-						children: [
-						const Text(
-							'Mô tả:',
-							style: TextStyle(
-							fontSize: 20,
-							fontWeight: FontWeight.bold,
-							color: Colors.white,
-							letterSpacing: 0.5,
-							),
-						),
-						const SizedBox(height: 8),
-						Text(
-							description ?? '',
-							style: const TextStyle(
-							fontSize: 16,
-							color: Colors.white70,
-							height: 1.5,
-							),
-						),
-						const SizedBox(height: 20),
-						const Text(
-							'Hướng dẫn chơi:',
-							style: TextStyle(
-							fontSize: 20,
-							fontWeight: FontWeight.bold,
-							color: Colors.white,
-							letterSpacing: 0.5,
-							),
-						),
-						const SizedBox(height: 8),
-						Text(
-							instructions ?? '',
-							style: const TextStyle(
-							fontSize: 16,
-							color: Colors.white70,
-							height: 1.5,
-							),
-						),
-						],
-					),
-					),
+					_buildDialogContent(description, instructions),
 					],
 				),
 				),
@@ -166,6 +122,54 @@ class HomeScreen extends StatelessWidget {
 			);
 			},
 		),
+		),
+	);
+	}
+
+	Widget _buildDialogContent(String? description, String? instructions) {
+	return Padding(
+		padding: const EdgeInsets.all(16),
+		child: Column(
+		crossAxisAlignment: CrossAxisAlignment.start,
+		children: [
+			const Text(
+			'Mô tả:',
+			style: TextStyle(
+				fontSize: 20,
+				fontWeight: FontWeight.bold,
+				color: Colors.white,
+				letterSpacing: 0.5,
+			),
+			),
+			const SizedBox(height: 8),
+			Text(
+			description ?? '',
+			style: const TextStyle(
+				fontSize: 16,
+				color: Colors.white70,
+				height: 1.5,
+			),
+			),
+			const SizedBox(height: 20),
+			const Text(
+			'Hướng dẫn chơi:',
+			style: TextStyle(
+				fontSize: 20,
+				fontWeight: FontWeight.bold,
+				color: Colors.white,
+				letterSpacing: 0.5,
+			),
+			),
+			const SizedBox(height: 8),
+			Text(
+			instructions ?? '',
+			style: const TextStyle(
+				fontSize: 16,
+				color: Colors.white70,
+				height: 1.5,
+			),
+			),
+		],
 		),
 	);
 	}
