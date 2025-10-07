@@ -37,17 +37,30 @@ class HomeScreen extends StatelessWidget {
 	}
 
 	Widget _buildBanner(BuildContext context) {
-		return Container(
+	return Container(
 		margin: const EdgeInsets.all(16),
 		height: 180,
 		decoration: BoxDecoration(
-			borderRadius: BorderRadius.circular(20),
-			gradient: const LinearGradient(
+		borderRadius: BorderRadius.circular(20),
+		gradient: const LinearGradient(
 			colors: [Color(0xFF6B46C1), Color(0xFF9333EA)],
 			begin: Alignment.topLeft,
 			end: Alignment.bottomRight,
-			),
 		),
-		);
+		),
+		child: Stack(
+		children: [
+			Positioned(
+			right: -20,
+			top: -20,
+			child: Icon(
+				Icons.sports_esports,
+				size: 180,
+				color: Colors.white.withOpacity(0.1),
+			),
+			),
+		],
+		),
+	);
 	}
 }
