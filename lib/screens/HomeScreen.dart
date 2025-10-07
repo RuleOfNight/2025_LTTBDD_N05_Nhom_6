@@ -12,6 +12,7 @@ class HomeScreen extends StatelessWidget {
 			crossAxisAlignment: CrossAxisAlignment.start,
 			children: [
 				_buildBanner(context),
+				_buildTitle('About our games'),
 				const SizedBox(height: 20),
 			],
 			),
@@ -85,6 +86,20 @@ class HomeScreen extends StatelessWidget {
 			),
 			),
 		],
+		),
+	);
+	}
+
+	Widget _buildTitle(String title) {
+	return Padding(
+		padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+		child: Text(
+		title,
+		style: const TextStyle(
+			fontSize: 22,
+			fontWeight: FontWeight.bold,
+			color: Colors.white,
+		),
 		),
 	);
 	}
