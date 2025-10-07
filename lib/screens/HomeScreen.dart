@@ -20,37 +20,7 @@ class HomeScreen extends StatelessWidget {
 		),
 		);
 	}
-
-	void _showGameInfoDialog(BuildContext context, String? name, String? description, String? instructions) {
-		showDialog(
-			context: context,
-			builder: (ctx) {
-			return Dialog(
-				backgroundColor: const Color(0xFF1A1A2E),
-				insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-				child: SingleChildScrollView(
-				child: Column(
-					crossAxisAlignment: CrossAxisAlignment.stretch,
-					mainAxisSize: MainAxisSize.min,
-					children: [
-					Container(
-						padding: const EdgeInsets.all(16),
-						child: Text(
-						name ?? '',
-						textAlign: TextAlign.center,
-						style: const TextStyle(
-							fontSize: 28,
-							color: Colors.white,
-						),
-						),
-					),
-					],
-				),
-				),
-			);
-			},
-		);
-	}
+	
 	AppBar _buildAppBar() {
 		return AppBar(
 		title: const Text(
@@ -66,6 +36,50 @@ class HomeScreen extends StatelessWidget {
 			),
 		],
 		);
+	}
+
+	void _showGameInfoDialog(BuildContext context, String? name, String? description, String? instructions) {
+	showDialog(
+		context: context,
+		builder: (ctx) {
+		return Dialog(
+			backgroundColor: const Color(0xFF1A1A2E),
+			insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+			child: SingleChildScrollView(
+			child: Column(
+				crossAxisAlignment: CrossAxisAlignment.stretch,
+				mainAxisSize: MainAxisSize.min,
+				children: [
+				_buildDialogHeader(name),
+				],
+			),
+			),
+		);
+		},
+	);
+	}
+
+	Widget _buildDialogHeader(String? name) {
+	return Container(
+		padding: const EdgeInsets.all(16),
+		decoration: const BoxDecoration(
+		color: Color(0xFF2A2A3E),
+		borderRadius: BorderRadius.only(
+			topLeft: Radius.circular(12),
+			topRight: Radius.circular(12),
+		),
+		),
+		child: Text(
+		name ?? '',
+		textAlign: TextAlign.center,
+		style: const TextStyle(
+			fontSize: 28,
+			fontFamily: 'Poppins-SemiBoldItalic',
+			color: Colors.white,
+			letterSpacing: 1.2,
+		),
+		),
+	);
 	}
 
 	Widget _buildBanner(BuildContext context) {
