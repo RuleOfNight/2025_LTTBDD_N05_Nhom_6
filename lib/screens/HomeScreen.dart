@@ -3,7 +3,7 @@ import 'package:games_platform/games/sudoku.dart';
 import 'package:games_platform/games/tictoc.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+	const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
