@@ -59,6 +59,31 @@ class HomeScreen extends StatelessWidget {
 				color: Colors.white.withOpacity(0.1),
 			),
 			),
+			Padding(
+			padding: const EdgeInsets.all(20),
+			child: Column(
+				crossAxisAlignment: CrossAxisAlignment.start,
+				mainAxisAlignment: MainAxisAlignment.center,
+				children: const [
+				Text(
+					'Chào mừng đến GameHub',
+					style: TextStyle(
+					fontSize: 16,
+					color: Colors.white70,
+					),
+				),
+				SizedBox(height: 8),
+				Text(
+					'Bạn cần đạt 5tr sức mạnh\ntrong Rise Of Kingdoms để skip QC',
+					style: TextStyle(
+					fontSize: 20,
+					fontWeight: FontWeight.bold,
+					color: Colors.white,
+					),
+				),
+				],
+			),
+			),
 		],
 		),
 	);
