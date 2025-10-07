@@ -21,6 +21,9 @@ class HomeScreen extends StatelessWidget {
 		);
 	}
 
+	void _showGameInfo(BuildContext context, String? name, String? description, String? instructions) {
+
+	}
 	AppBar _buildAppBar() {
 		return AppBar(
 		title: const Text(
@@ -135,7 +138,17 @@ class HomeScreen extends StatelessWidget {
 
 	return Column(
 		children: games.map((game) {
-		return _buildGameBanner(game);
+		return GestureDetector(
+			onTap: () {
+			_showGameInfo(
+				context,
+				game['name'] as String?,
+				game['description'] as String?,
+				game['instructions'] as String?,
+			);
+			},
+			child: _buildGameBanner(game),
+		);
 		}).toList(),
 	);
 	}
