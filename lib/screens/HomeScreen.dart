@@ -166,6 +166,37 @@ class HomeScreen extends StatelessWidget {
 				),
 			),
 			),
+			Padding(
+			padding: const EdgeInsets.all(20),
+			child: Row(
+				mainAxisAlignment: MainAxisAlignment.spaceBetween,
+				children: [
+				Expanded(
+					child: Text(
+					game['name'] as String,
+					style: const TextStyle(
+						fontSize: 24,
+						fontFamily: 'Poppins-SemiBoldItalic',
+						color: Colors.white,
+						letterSpacing: 1.2,
+						shadows: [
+						Shadow(
+							color: Colors.black26,
+							offset: Offset(2, 2),
+							blurRadius: 4,
+						),
+						],
+					),
+					),
+				),
+				Icon(
+					game['icon'] as IconData,
+					size: 50,
+					color: Colors.white,
+				),
+				],
+			),
+			),
 		],
 		),
 	);
