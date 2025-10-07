@@ -150,6 +150,13 @@ class _LeaderboardState extends State<Leaderboard> {
                         ),
                       ],
                     ),
+                    trailing: Text(
+                      '${player['score']} điểm',
+                      style: const TextStyle(
+                        color: Colors.purpleAccent,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 );
               },
