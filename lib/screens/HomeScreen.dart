@@ -144,7 +144,17 @@ class HomeScreen extends StatelessWidget {
 	return Container(
 		margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
 		height: 120,
-		color: game['color'] as Color,
+		decoration: BoxDecoration(
+		borderRadius: BorderRadius.circular(20),
+		gradient: LinearGradient(
+			colors: [
+			(game['color'] as Color).withOpacity(0.6),
+			(game['color'] as Color).withOpacity(0.3),
+			],
+			begin: Alignment.topLeft,
+			end: Alignment.bottomRight,
+		),
+		),
 	);
 	}
 
