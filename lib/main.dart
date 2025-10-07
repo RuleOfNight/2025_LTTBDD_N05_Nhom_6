@@ -3,7 +3,7 @@ import 'login/LoginScreen.dart';
 import 'package:games_platform/screens/Leaderboard.dart';
 
 void main() {
-  runApp(MaterialApp(home: Leaderboard()));
+  runApp(MaterialApp(home: LoginScreen()));
 }
 
 class GamePlatformApp extends StatelessWidget {

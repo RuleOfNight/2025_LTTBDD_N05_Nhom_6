@@ -44,6 +44,7 @@ class HomeScreen extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.all(16),
       height: 180,
+      width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         gradient: const LinearGradient(
