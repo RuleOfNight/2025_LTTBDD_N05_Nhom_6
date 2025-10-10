@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:games_platform/screens/LeaderboardScreen.dart';
 import 'HomeScreen.dart';
 import 'GameScreen.dart';
-import 'LeaderBoard.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -15,20 +15,21 @@ class _MainScreenState extends State<MainScreen> {
 
   final List<Widget> _screens = [
     const HomeScreen(),
-    const GameScreen(),
-    const LeaderboardScreen(),
+    const Placeholder(),
+    const Leaderboard(),
     const Placeholder(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF1A1A2E),
       body: _screens[_selectedIndex],
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: Colors.purple.withOpacity(0.2),
+              color: Colors.purple.withAlpha(20),
               blurRadius: 20,
               offset: const Offset(0, -5),
             ),
@@ -47,7 +48,10 @@ class _MainScreenState extends State<MainScreen> {
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(icon: Icon(Icons.gamepad), label: 'Games'),
-            BottomNavigationBarItem(icon: Icon(Icons.leaderboard), label: 'Leaderboard'),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.leaderboard),
+              label: 'Leaderboard',
+            ),
             BottomNavigationBarItem(icon: Icon(Icons.info), label: 'Dev Team'),
           ],
         ),
