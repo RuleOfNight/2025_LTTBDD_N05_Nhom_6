@@ -22,7 +22,10 @@ class DevTeamScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start, // Căn trái
           children: [
             _buildTitle('Thông tin học phần'),
-
+            _buildInfoRow('Học phần', 'Lập trình thiết bị di động'),
+            _buildInfoRow('Mã học phần', 'CSE702027'),
+            _buildInfoRow('Lớp', 'N05'),
+            _buildInfoRow('Giảng viên', 'Ts. Nguyễn Xuân Quế'),
             _buildTitle('Sinh viên thực hiện'),
             const SizedBox(height: 20),
           ],
@@ -40,6 +43,31 @@ class DevTeamScreen extends StatelessWidget {
           fontSize: 22,
           fontWeight: FontWeight.bold,
           color: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildInfoRow(String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4.0),
+      child: RichText(
+        text: TextSpan(
+          style: const TextStyle(
+            fontSize: 16,
+            color: Colors.white70,
+            height: 1.5,
+          ),
+          children: [
+            TextSpan(
+              text: '$label: ',
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+            TextSpan(text: value),
+          ],
         ),
       ),
     );
