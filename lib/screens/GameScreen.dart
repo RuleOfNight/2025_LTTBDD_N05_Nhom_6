@@ -8,11 +8,13 @@ class GameScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF1A1A2E),
       // Scaffold tạo bố cục cơ bản cho 1 màn hình (headbar + body)
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 0, 0, 0),
         title: const Text(
-          'GameHub',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          'GameS',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
         actions: [
           // Nút thông báo ở góc phải headbar

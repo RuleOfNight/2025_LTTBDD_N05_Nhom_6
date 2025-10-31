@@ -16,7 +16,6 @@ class GamePlatformApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.purple,
         brightness: Brightness.dark,
-        scaffoldBackgroundColor: const Color(0xFF0F0F1E),
         appBarTheme: const AppBarTheme(
           backgroundColor: Color(0xFF1A1A2E),
           elevation: 0,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:games_platform/screens/LeaderboardScreen.dart';
 import 'HomeScreen.dart';
 import 'GameScreen.dart';
+import 'DevTeamScreen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -15,9 +16,9 @@ class _MainScreenState extends State<MainScreen> {
 
   final List<Widget> _screens = [
     const HomeScreen(),
-    const Placeholder(),
+    const GameScreen(),
     const Leaderboard(),
-    const Placeholder(),
+    const DevTeamScreen(),
   ];
 
   @override

@@ -111,7 +111,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildDialogImage(String gameImage) {
     return Container(
-      height: 200,
+      height: 400,
       margin: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
       decoration: BoxDecoration(
         color: Colors.grey.shade800,
