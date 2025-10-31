@@ -106,8 +106,21 @@ class DevTeamScreen extends StatelessWidget {
     return Container(
       child: Row(
         children: [
+          CircleAvatar(
+            child: ClipOval(
+              child: Image.asset(
+                avatar,
+                fit: BoxFit.cover,
+                width: 60,
+                height: 60,
+              ),
+            ),
+          ),
+          const SizedBox(width: 16),
           Expanded(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   name,
