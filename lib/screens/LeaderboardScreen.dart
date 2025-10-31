@@ -51,8 +51,9 @@ class _LeaderboardState extends State<Leaderboard> {
     return Scaffold(
       backgroundColor: Color(0xFF1A1A2E),
       appBar: AppBar(
+        backgroundColor: Colors.black,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
             Navigator.pushReplacement(
               context,
@@ -62,11 +63,15 @@ class _LeaderboardState extends State<Leaderboard> {
         ),
         title: const Text(
           'Bảng Xếp Hạng',
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.refresh, size: 28),
+            icon: const Icon(Icons.refresh, size: 28, color: Colors.white),
             onPressed: () {},
           ),
         ],

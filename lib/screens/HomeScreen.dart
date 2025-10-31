@@ -24,9 +24,10 @@ class HomeScreen extends StatelessWidget {
 
   AppBar _buildAppBar() {
     return AppBar(
+      backgroundColor: Colors.black,
       title: const Text(
         'GameHub',
-        style: TextStyle(fontWeight: FontWeight.bold),
+        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
       ),
       actions: [
         IconButton(
@@ -111,7 +112,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildDialogImage(String gameImage) {
     return Container(
-      height: 200,
+      height: 400,
       margin: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
       decoration: BoxDecoration(
         color: Colors.grey.shade800,
