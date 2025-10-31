@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'MainScreen.dart';
 
 class DevTeamScreen extends StatelessWidget {
   const DevTeamScreen({Key? key}) : super(key: key);
@@ -6,16 +7,34 @@ class DevTeamScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1A1A2E),
+      backgroundColor: Color(0xFF1A1A2E),
       appBar: AppBar(
-        title: const Text(
-          'Thông tin Nhóm',
-          style: TextStyle(fontWeight: FontWeight.bold),
+        backgroundColor: Colors.black,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const MainScreen()),
+            );
+          },
         ),
-        backgroundColor: const Color(0xFF1A1A2E),
-        elevation: 0,
+        title: const Text(
+          'Thông tin Dev Team',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.refresh, size: 28, color: Colors.white),
+            onPressed: () {},
+          ),
+        ],
       ),
-      // 1. Thêm SingleChildScrollView để có thể cuộn
+      // 1., Thêm SingleChildScrollView để có thể cuộn
       body: SingleChildScrollView(
         // 2. Thêm Column để xếp các widget theo chiều dọc
         child: Column(
@@ -29,6 +48,12 @@ class DevTeamScreen extends StatelessWidget {
               name: 'Đào Mạnh Vương',
               mssv: '23010586',
               avatar: 'imgs/avatar_vuong.png',
+              color: Colors.purple,
+            ),
+            _buildDeveloperCard(
+              name: 'Lê Xuân Khóa',
+              mssv: '230105xx',
+              avatar: 'imgs/avatar_khoa.png',
               color: Colors.purple,
             ),
             const SizedBox(height: 20),
