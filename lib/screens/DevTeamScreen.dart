@@ -22,10 +22,8 @@ class DevTeamScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start, // Căn trái
           children: [
             _buildTitle('Thông tin học phần'),
-            _buildInfoRow('Học phần', 'Lập trình thiết bị di động'),
-            _buildInfoRow('Mã học phần', 'CSE702027'),
-            _buildInfoRow('Lớp', 'N05'),
-            _buildInfoRow('Giảng viên', 'Ts. Nguyễn Xuân Quế'),
+            _buildCourseInfo(),
+
             _buildTitle('Sinh viên thực hiện'),
             const SizedBox(height: 20),
           ],
@@ -69,6 +67,26 @@ class DevTeamScreen extends StatelessWidget {
             TextSpan(text: value),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildCourseInfo() {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: const Color(0xFF2A2A3E),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildInfoRow('Học phần', 'Lập trình thiết bị di động'),
+          _buildInfoRow('Mã học phần', 'CSE702027'),
+          _buildInfoRow('Lớp', 'N05'),
+          _buildInfoRow('Giảng viên', 'Ts. Nguyễn Xuân Quế'),
+        ],
       ),
     );
   }
