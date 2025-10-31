@@ -107,12 +107,21 @@ class DevTeamScreen extends StatelessWidget {
       child: Row(
         children: [
           CircleAvatar(
+            radius: 30,
+            backgroundColor: color.withAlpha(100),
             child: ClipOval(
               child: Image.asset(
                 avatar,
                 fit: BoxFit.cover,
                 width: 60,
                 height: 60,
+                errorBuilder: (context, error, stackTrace) {
+                  return const Icon(
+                    Icons.person,
+                    size: 30,
+                    color: Colors.white,
+                  );
+                },
               ),
             ),
           ),
