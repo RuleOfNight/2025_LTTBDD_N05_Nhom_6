@@ -25,6 +25,12 @@ class DevTeamScreen extends StatelessWidget {
             _buildCourseInfo(),
 
             _buildTitle('Sinh viên thực hiện'),
+            _buildDeveloperCard(
+              name: 'Đào Mạnh Vương',
+              mssv: '23010586',
+              avatar: 'imgs/avatar_vuong.png',
+              color: Colors.purple,
+            ),
             const SizedBox(height: 20),
           ],
         ),
@@ -86,6 +92,39 @@ class DevTeamScreen extends StatelessWidget {
           _buildInfoRow('Mã học phần', 'CSE702027'),
           _buildInfoRow('Lớp', 'N05'),
           _buildInfoRow('Giảng viên', 'Ts. Nguyễn Xuân Quế'),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDeveloperCard({
+    required String name,
+    required String mssv,
+    required String avatar,
+    required Color color,
+  }) {
+    return Container(
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              children: [
+                Text(
+                  name,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  'MSSV: $mssv',
+                  style: const TextStyle(fontSize: 16, color: Colors.white70),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
