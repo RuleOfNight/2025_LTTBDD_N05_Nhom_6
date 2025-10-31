@@ -24,9 +24,10 @@ class HomeScreen extends StatelessWidget {
 
   AppBar _buildAppBar() {
     return AppBar(
+      backgroundColor: Colors.black,
       title: const Text(
         'GameHub',
-        style: TextStyle(fontWeight: FontWeight.bold),
+        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
       ),
       actions: [
         IconButton(
