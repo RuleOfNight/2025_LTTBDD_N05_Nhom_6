@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../games/tictoc.dart';
 import '../games/sudoku.dart';
+import 'MainScreen.dart';
 
 class GameScreen extends StatelessWidget {
   const GameScreen({Key? key}) : super(key: key);
@@ -12,6 +13,15 @@ class GameScreen extends StatelessWidget {
       // Scaffold tạo bố cục cơ bản cho 1 màn hình (headbar + body)
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 0, 0, 0),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const MainScreen()),
+            );
+          },
+        ),
         title: const Text(
           'GameS',
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
